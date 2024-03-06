@@ -78,4 +78,4 @@ async function loginHandler (username, pswd) {
 
 
 module.exports = {getAllUsers, createUser, deleteUser, getUser, 
-    getAllUsers, updateUser, loginHandler}
+    getAllUsers, updateUser, loginHandler};
