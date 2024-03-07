@@ -19,8 +19,8 @@ class Trendline extends React.Component {
             <IgrFinancialChart
               chartType="Line"
               thickness={2}
-              height="500px"
-              width="1200px"
+              height="50vh"
+              width="100%"
               chartTitle="Google vs Microsoft Changes"
               subtitle="Between 2013 and 2017"
               yAxisMode="PercentChange"
