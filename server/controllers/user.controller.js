@@ -5,7 +5,12 @@ const bcrypt = require("bcrypt");
 
 async function getAllUsers () {
     try {
-        return await User.find({});
+        const userData = await User.find({});
+        const users = userData.map(usr => {
+            const {password, ...safeUser} = usr;
+            return safeUser;
+        });
+        return users;
     }
     catch (er) {
         throw new Error (er.message);
