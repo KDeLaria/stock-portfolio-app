@@ -1,12 +1,13 @@
 import React from 'react';
 import Login from '../components/login-register/login';
 import Register from '../components/login-register/register';
+import useAuth from ""
 
 
 
 
 const LoginRegister = () => {
-  const loggedIn = false; // Replace with actual login check
+  if (loggedIn)
 
   return (
     <div className="flex justify-center items-center bg-gray-100 min-h-screen">

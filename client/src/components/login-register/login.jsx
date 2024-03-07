@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,25 +16,25 @@ function LoginPage() {
         <h3 className="text-2xl font-bold text-center">Login to your account</h3>
         <form onSubmit={handleSubmit}>
           <div className="mt-4">
-            <label htmlFor="email" className="block">Email</label>
+            <label htmlFor="loginEmail" className="block">Email</label>
             <input 
               type="email" 
               placeholder="Email" 
-              id="email"
+              id="loginEmail"
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)}
+              value={loginEmail} 
+              onChange={(e) => setLoginEmail(e.target.value)}
             />
           </div>
           <div className="mt-4">
-            <label htmlFor="password" className="block">Password</label>
+            <label htmlFor="loginPassword" className="block">Password</label>
             <input 
               type="password" 
               placeholder="Password" 
-              id="password"
+              id="loginPassword"
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)}
+              value={loginPassword} 
+              onChange={(e) => setLoginPassword(e.target.value)}
             />
           </div>
           <div className="flex items-center justify-between mt-4">
