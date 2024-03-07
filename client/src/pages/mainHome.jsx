@@ -1,8 +1,11 @@
 import React from 'react';
-import Header from '../components/header';
-import NewsArticle from '../components/newsArticle';
-import Portfolio from '../components/portfolio';
-import Trending from '../components/trending';
+import Header from '../components/home/header';
+import NewsArticle from '../components/home/newsArticle';
+import Trendline from '../components/home/Trendline';
+import Portfolio from '../components/home/portfolio';
+import Trending from '../components/home/trending';
+import Footer from '../components/home/footer';
+
 
 const HomePage = () => {
   const loggedIn = false; // Replace with actual login check
@@ -16,11 +19,13 @@ const HomePage = () => {
           <NewsArticle />
           {/* ... other sections like NewsImage/Link ... */}
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div className="grid md:grid-cols-2 gap-10 mb-4 m-2">
+          <Trendline />
           <Portfolio loggedIn={loggedIn} />
-          {/* ... other sections like Actions ... */}
+          
         </div>
         <Trending />
+        <Footer />
       </div>
     </div>
   );
