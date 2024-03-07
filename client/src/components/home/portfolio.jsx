@@ -2,7 +2,7 @@ import React from 'react';
 
 const Portfolio = ({ loggedIn }) => {
   return (
-    <div className="md:col-span-2 border p-4 rounded-lg shadow">
+    <div className="">
       {loggedIn ? (
         <>
           <p className="font-semibold mb-4">Your portfolio trendline</p>

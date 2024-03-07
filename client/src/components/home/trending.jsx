@@ -2,7 +2,7 @@ import React from 'react';
 
 const Trending = () => {
   return (
-    <section className="border-t pt-4">
+    <section className="border-t pt-4 mb-5 px-4">
       <h3 className="text-xl font-bold mb-4">Trending</h3>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {/* Example trending item for biggest gains */}
