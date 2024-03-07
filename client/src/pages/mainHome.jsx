@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../components/header';
-import NewsArticle from '../components/newsArticle';
-import Trendline from '../components/Trendline';
-import Portfolio from '../components/portfolio';
-import Trending from '../components/trending';
-import Footer from './footer';
+import Header from '../components/home/header';
+import NewsArticle from '../components/home/newsArticle';
+import Trendline from '../components/home/Trendline';
+import Portfolio from '../components/home/portfolio';
+import Trending from '../components/home/trending';
+import Footer from '../components/home/footer';
 
 
 const HomePage = () => {

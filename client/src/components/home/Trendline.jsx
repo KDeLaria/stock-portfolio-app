@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { IgrFinancialChart } from "igniteui-react-charts";
 import { IgrFinancialChartModule } from "igniteui-react-charts";
-import StocksHistory from "./StocksHistory";
+import StocksHistory from "../StocksHistory";
 
 IgrFinancialChartModule.register();
 
