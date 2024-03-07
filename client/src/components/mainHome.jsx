@@ -10,7 +10,6 @@ const HomePage = () => {
   return (
     <div className="">
       <Header />
-      {/* Removed padding to allow the white background to extend to the edges */}
       <div className="bg-white rounded shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Investor Page</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
