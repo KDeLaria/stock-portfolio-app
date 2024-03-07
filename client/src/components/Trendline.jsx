@@ -23,7 +23,7 @@ class Trendline extends React.Component {
               width="1200px"
               chartTitle="Google vs Microsoft Changes"
               subtitle="Between 2013 and 2017"
-              yAxisMode="PercentChange"
+              yAxisMode="Percent Change"
               yAxisTitle="Percent Changed"
               dataSource={this.state.data}
             />
