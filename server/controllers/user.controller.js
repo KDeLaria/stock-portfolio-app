@@ -1,4 +1,4 @@
-const { updateUserById } = require("../../../../Instructor DEMO react app/notetaker/server/controllers/user.controller.js");
+// const { updateUserById } = require("../../../../Instructor DEMO react app/notetaker/server/controllers/user.controller.js");
 const User = require("../models/User.js");
 const bcrypt = require("bcrypt");
 
