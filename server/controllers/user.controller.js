@@ -1,4 +1,3 @@
-const { updateUserById } = require("../../../../Instructor DEMO react app/notetaker/server/controllers/user.controller.js");
 const User = require("../models/User.js");
 const bcrypt = require("bcrypt");
 
@@ -19,7 +18,7 @@ async function getAllUsers () {
 
 async function getUser (id) {
     try {
-        return await User.find(id);
+        return await User.findById(id);
     }
     catch (er) {
         throw new Error (er.message);
