@@ -4,9 +4,10 @@ const AuthContext = createContext();
 
 export default function AuthProvider (props) {
     const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedInUser, setLoggedInUser] = useState();
 
     return (
-        <AuthContext.Provider  value={{loggedIn, setLoggedIn}}>
+        <AuthContext.Provider  value={{loggedIn, setLoggedIn, loggedInUser, setLoggedInUser}}>
             {props.children}
         </AuthContext.Provider>
     )
