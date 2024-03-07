@@ -8,9 +8,10 @@ const HomePage = () => {
   const loggedIn = false; // Replace with actual login check
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="">
       <Header />
-      <div className="bg-slate p-6 rounded shadow-md">
+      {/* Removed padding to allow the white background to extend to the edges */}
+      <div className="bg-white rounded shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Investor Page</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <NewsArticle />
