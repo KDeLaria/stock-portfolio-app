@@ -12,6 +12,13 @@ class Trendline extends React.Component {
     this.state = { data: [] };
     this.initData();
   }
+
+  initData() {
+    StocksHistory.getStock(this.props.symbol).then((stocks) => {
+      this.setState({ data: stocks });
+    });
+  }
+
   render() {
     return (
       <>
@@ -21,21 +28,13 @@ class Trendline extends React.Component {
               thickness={2}
               height="50vh"
               width="100%"
-              chartTitle="Google vs Microsoft Changes"
-              subtitle="Between 2013 and 2017"
-              yAxisMode="PercentChange"
-              yAxisTitle="Percent Changed"
+              chartTitle={`${this.props.symbol} Stock Prices`}
+              subtitle="Q4 2023 to Present"
               dataSource={this.state.data}
             />
           </div>
       </>
     );
-  }
-
-  initData() {
-    StocksHistory.getMultipleStocks().then((stocks) => {
-      this.setState({ data: stocks });
-    });
   }
 }
 
