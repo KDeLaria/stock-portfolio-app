@@ -11,6 +11,6 @@ const stocksSchema = new Schema({
    timestamps: false
 })
 
-const Stocks = model('Stock', stocksSchema)
+const Stocks = model('Stocks', stocksSchema)
 
 module.exports= Stocks;

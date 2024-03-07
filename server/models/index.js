@@ -4,4 +4,4 @@ const Stocks = require('./Stocks');
 
 
 
-module.exports = { User };
+module.exports = { User, Portfolio, Stocks };
