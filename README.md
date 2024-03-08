@@ -1,3 +1,5 @@
-start build /client
+start build 
+
+cd into /client
 
 npx tailwindcss -i ./src/index.css -o ./src/output.css --watch
