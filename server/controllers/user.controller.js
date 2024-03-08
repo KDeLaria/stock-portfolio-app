@@ -1,4 +1,3 @@
-// const { updateUserById } = require("../../../../Instructor DEMO react app/notetaker/server/controllers/user.controller.js");
 const User = require("../models/User.js");
 const bcrypt = require("bcrypt");
 
@@ -19,7 +18,7 @@ async function getAllUsers () {
 
 async function getUser (id) {
     try {
-        return await User.find(id);
+        return await User.findById(id);
     }
     catch (er) {
         throw new Error (er.message);
@@ -51,7 +50,7 @@ async function updateUser (id, data) {
         if (data.password) {
             const passwordHash = await bcrypt.hash(data.password, 10);
             const userData = {...data, password: passwordHash};
-            return await User.create(id, userData, {new:true}); 
+            return await User.findByIdAndUpdate(id, userData, {new:true}); 
         }
         return  await User.findByIdAndUpdate(id, data, {new:true})      
     } catch (er) {
