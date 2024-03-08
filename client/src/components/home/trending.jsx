@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import fallbackData from '../../seeds/top-gainers-losers-seed.json'; // Ensure the path is correct
 
 const Trending = () => {
   const [topGainers, setTopGainers] = useState([]);
@@ -7,25 +8,25 @@ const Trending = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiKey = 'I48DNLCJ6A7VMJ13'; // Replace with your actual API key
+      const apiKey = 'API KEY'; // Replace with your API key
       const url = `https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=${apiKey}`;
 
       try {
         const response = await axios.get(url);
-        console.log(response.data)
-        const data = response.data;
-
-        // Correctly accessing the top_gainers and top_losers arrays
-        // and slicing to get the top 2 from each category
-        setTopGainers(data['top_gainers'].slice(0, 2));
-        setTopLosers(data['top_losers'].slice(0, 2));
+        console.log(response.data);
+        // Assuming the API returns an object with 'top_gainers' and 'top_losers' properties
+        setTopGainers(response.data['top_gainers'].slice(0, 2));
+        setTopLosers(response.data['top_losers'].slice(0, 2));
       } catch (error) {
         console.error('Error fetching stock data:', error);
+        // Fallback to local JSON data on error or API limit reached
+        setTopGainers(fallbackData.top_gainers.slice(0, 2));
+        setTopLosers(fallbackData.top_losers.slice(0, 2));
       }
     };
 
     fetchData();
-  }, []); // This effect runs once on mount
+  }, []);// This effect runs once on mount
 
   return (
     <section className="border-t pt-4 mb-5 px-4">
