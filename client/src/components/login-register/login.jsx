@@ -4,6 +4,19 @@ function LoginPage() {
   const [loginUsername, setloginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState("");
+  const [usernameWarning, setUsernameWarning] = useState("");
+  const [passwordWarning, setPasswordWarning] = useState("");
+
+  function clearWarnings () {
+    setLoginMessage("");
+    setUsernameWarning("");
+    setPasswordWarning("");
+  }
+
+  function clearForm () {
+    setloginUsername("");
+    setLoginPassword("");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +44,14 @@ function LoginPage() {
         console.log(err.message);
       }
     }
+    else {
+      if (loginUsername === "") {
+        setUsernameWarning("Username is required.");
+      }
+      if (loginPassword === "") {
+        setPasswordWarning("Password is required.");
+      }
+    }
   };
 
   return (
@@ -44,9 +65,9 @@ function LoginPage() {
               type="text"
               placeholder="Username"
               id="loginUsername"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
               value={loginUsername}
-              onChange={(e) => setloginUsername(e.target.value)}
+              onChange={(e) => {setloginUsername(e.target.value); clearWarnings();}}
             />
           </div>
           <div className="mt-4">
@@ -55,11 +76,14 @@ function LoginPage() {
               type="password"
               placeholder="Password"
               id="loginPassword"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
               value={loginPassword}
-              onChange={(e) => setLoginPassword(e.target.value)}
+              onChange={(e) => {setLoginPassword(e.target.value); clearWarnings();}}
             />
           </div>
+          {loginMessage.length > 0 && (<div className='text-red-600'>{loginMessage}</div>)}
+          {usernameWarning.length > 0 && (<div className='text-red-600'>{usernameWarning}</div>)}
+          {passwordWarning.length > 0 && (<div className='text-red-600'>{passwordWarning}</div>)}
           <div className="flex items-center justify-between mt-4">
             <button
               type="submit"

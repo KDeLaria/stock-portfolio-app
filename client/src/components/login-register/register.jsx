@@ -6,15 +6,30 @@ function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [registerMessage, setRegisterMessage] = useState('');
-  const [usernameWarning, setUsername] = useState("");
+  const [usernameWarning, setUsernameWarning] = useState("");
   const [nameWarning, setNameWarning] = useState("");
   const [passwordWarning, setPasswordWarning] = useState("");
+
+  function clearWarnings (){
+    setRegisterMessage("");
+    setPasswordWarning("");
+    setUsernameWarning("");
+    setUsernameWarning("");
+  }
+
+  function clearForm () {
+    setName("");
+    setRegUsername("");
+    setPassword("");
+    setConfirmPassword("");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Here you would typically handle the registration logic,
     // for example, sending a request to your backend server
-    if (name && regUsername && password && confirmPassword) {
+    clearWarnings();
+    if (name && regUsername && password) {
       if (password === confirmPassword) {
         try {
           const query = await fetch("/api/user", {
@@ -30,6 +45,7 @@ function Register() {
           const results = await query.json();
 
           if (results?.status !== "error") {
+            clearForm();
             window.location.href = "/";
           }
           else {
@@ -37,19 +53,22 @@ function Register() {
           }
         }
         catch (err) {
-          setRegisterMessage("Sorry, we are unable to register your account.")
+          setRegisterMessage("Sorry, we are unable to register your account.");
         }
       }
       else {
-        setPasswordWarning("The passwords do not match.")
+        setPasswordWarning("The passwords do not match.");
       }
     }
     else {
       if (name === "") {
         setNameWarning("Name is required.");
       }
-      if (name === "") {
-        setNameWarning("Name is required.");
+      if (regUsername === "") {
+        setUsernameWarning("Username is required.");
+      }
+      if (password === "" || confirmPassword === "") {
+        setPasswordWarning("Password is required.");
       }
     }
     // Make sure to add validation for the inputs, for example, check if passwords match
@@ -67,9 +86,9 @@ function Register() {
               type="text"
               placeholder="Name"
               id="name"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {setName(e.target.value); clearWarnings();}}
             />
           </div>
           <div className="mt-4">
@@ -78,9 +97,9 @@ function Register() {
               type="text"
               placeholder="Username"
               id="regUsername"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
               value={regUsername}
-              onChange={(e) => setRegUsername(e.target.value)}
+              onChange={(e) => {setRegUsername(e.target.value); clearWarnings();}}
             />
           </div>
           <div className="mt-4">
@@ -89,9 +108,9 @@ function Register() {
               type="password"
               placeholder="Password"
               id="password"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {setPassword(e.target.value); clearWarnings();}}
             />
           </div>
           <div className="mt-4">
@@ -100,12 +119,15 @@ function Register() {
               type="password"
               placeholder="Confirm Password"
               id="confirmPassword"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={(e) => {setConfirmPassword(e.target.value); clearWarnings();}}
             />
           </div>
-          {passwordWarning.length > 0 && (<div>{passwordWarning}</div>)}
+          {registerMessage.length > 0 && (<div className='text-red-600'>{registerMessage}</div>)}
+          {nameWarning.length > 0 && (<div className='text-red-600'>{nameWarning}</div>)}
+          {usernameWarning.length > 0 && (<div className='text-red-600'>{usernameWarning}</div>)}
+          {passwordWarning.length > 0 && (<div className='text-red-600'>{passwordWarning}</div>)}
           <div className="flex items-center justify-between mt-4">
             <button
               type="submit"
