@@ -11,7 +11,7 @@ class StocksHistory {
 
   // gets IBM stock OHLC prices from a JSON string
   static async getStock(symbol) {
-      let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=COL9NGZNP53A9UBX`;
+      let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=GY01Z3INJ691AGCF`;
       let response = await fetch(url);
       let jsonData = await response.json();
       let stockData = this.convertData(jsonData["Time Series (Daily)"]);
