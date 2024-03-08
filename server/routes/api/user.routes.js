@@ -1,11 +1,12 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
+const {ObjectId} = require("mongoose");
 require("dotenv").config();
 
 const { getAllUsers, createUser, deleteUser, getUser,
     updateUser, loginHandler } = require("../../controllers/user.controller");
 
-function setToken () {
+function setToken (id) {
     return jwt.sign({ id: id }, process.env.JWT_SECRET);
 };
 
@@ -52,10 +53,9 @@ router.delete("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const payload = await createUser(req.body);
-        const token = setToken(payload.id);
+        const token = setToken(payload._id);
         res.status(200).cookie("auth_cookie", token).json(payload);
     } catch (err) {
-        console.log(err.message);
         res.status(500).json({ status: "error", message: err.message });
     }
 });
@@ -73,6 +73,7 @@ router.post("/logout", async(req, res) => {
   router.post("/login", async(req, res) => {
     try {
       const payload = await loginHandler(req.body.username, req.body.password);
+      console.log(payload);
       const token = createToken(payload._id);
       res.status(200).cookie("auth_cookie", token).json(payload);
     }catch(err){
