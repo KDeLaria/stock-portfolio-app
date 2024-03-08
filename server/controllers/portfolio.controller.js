@@ -1,8 +1,8 @@
 const Portfolio = require("../models/Portfolio");
 
-async function getAllPortfolio () {
+async function getAllPortfolio (userId) {
     try {
-        return await Portfolio.find({});
+        return await Portfolio.find({owner_id:userId});
     }
     catch (er) {
         throw new Error (er.message);
@@ -27,7 +27,7 @@ async function deleteStock (id) {
     }
 }
 
-async function updateStock (id, ) {
+async function updateStock (id) {
     try {
         return await User.findByIdAndUpdate(id);
     }
@@ -44,3 +44,5 @@ async function createStock (data) {
         throw new Error (er.message);
     }
 }
+
+module.exports = {createStock, deleteStock, updateStock, getStock, getAllPortfolio};

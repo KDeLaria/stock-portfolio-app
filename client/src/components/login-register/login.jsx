@@ -21,7 +21,6 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loginUsername && loginPassword) {
-      Auth.login(loginUsername, loginPassword);
       try {
         const query = await fetch("/api/user", {
           method: "POST",
