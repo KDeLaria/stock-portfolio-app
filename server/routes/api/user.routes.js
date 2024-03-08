@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
-const {ObjectId} = require("mongoose");
 require("dotenv").config();
 
 const { getAllUsers, createUser, deleteUser, getUser,
