@@ -5,10 +5,12 @@ import Trendline from '../components/home/Trendline';
 import Portfolio from '../components/home/portfolio';
 import Trending from '../components/home/trending';
 import Footer from '../components/home/footer';
+import useAuth from "../utils/Auth";
 
 
 const HomePage = () => {
-  const loggedIn = false; // Replace with actual login check
+
+  const Auth = useAuth();
 
   return (
     <div className="">
@@ -21,7 +23,7 @@ const HomePage = () => {
         </div>
         <div className="grid md:grid-cols-2 gap-10 mb-4 m-2">
           <Trendline />
-          <Portfolio loggedIn={loggedIn} />
+          {Auth.props.value.loggedIn && (<Portfolio />)}
           
         </div>
         <Trending />
