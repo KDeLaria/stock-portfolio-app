@@ -1,110 +1,57 @@
 class StocksHistory {
-    // gets stock OHLC prices for multiple stocks
-    static async getMultipleStocks() {
+  // gets stock OHLC prices for multiple stocks
+  static async getMultipleStocks(symbol) {
       // getting prices of multiples stocks asynchronously
       const dataSources = [
-        await this.getAmazonStock(),
-        await this.getGoogleStock(),
-        await this.getMicrosoftStock(),
-        await this.getTeslaStock()
+          await this.getStock(symbol),
       ];
-  
-      return new Promise((resolve, reject) => {
-        resolve(dataSources);
-      });
-    }
-  
-    // gets Amazon stock OHLC prices from a .JSON file
-    static async getAmazonStock() {
-      let url = "https://static.infragistics.com/xplatform/data/stocks/stockAmazon.json";
+
+      return dataSources;
+  }
+
+  // gets IBM stock OHLC prices from a JSON string
+  static async getStock(symbol) {
+      let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=COL9NGZNP53A9UBX`;
       let response = await fetch(url);
       let jsonData = await response.json();
-      let stockData = this.convertData(jsonData);
-      // setting data intent for Series Title, e.g. FinancialChart usage
+      let stockData = this.convertData(jsonData["Time Series (Daily)"]);
+      // setting data intent for Series Title, e.g., FinancialChart usage
       stockData.__dataIntents = {
-        close: ["SeriesTitle/Amazon"]
+          close: [`SeriesTitle/${symbol}`]
       };
-      // console.log("fetchAmazonStock: ", stockData.length);
-  
-      return new Promise((resolve, reject) => {
-        resolve(stockData);
-      });
-    }
-  
-    // gets Tesla stock OHLC prices from a .JSON file
-    static async getTeslaStock() {
-      let url = "https://static.infragistics.com/xplatform/data/stocks/stockTesla.json";
-      let response = await fetch(url);
-      let jsonData = await response.json();
-      let stockData = this.convertData(jsonData);
-      // setting data intent for Series Title, e.g. FinancialChart usage
-      stockData.__dataIntents = {
-        close: ["SeriesTitle/Tesla"]
-      };
-      return new Promise((resolve, reject) => {
-        resolve(stockData);
-      });
-    }
-  
-    // gets Microsoft stock OHLC prices from a .JSON file
-    static async getMicrosoftStock() {
-      let url = "https://static.infragistics.com/xplatform/data/stocks/stockMicrosoft.json";
-      let response = await fetch(url);
-      let jsonData = await response.json();
-      let stockData = this.convertData(jsonData);
-      // setting data intent for Series Title, e.g. FinancialChart usage
-      stockData.__dataIntents = {
-        close: ["SeriesTitle/Microsoft"]
-      };
-      return new Promise((resolve, reject) => {
-        resolve(stockData);
-      });
-    }
-  
-    // gets Google stock OHLC prices from a .JSON file
-    static async getGoogleStock() {
-      let url = "https://static.infragistics.com/xplatform/data/stocks/stockGoogle.json";
-      let response = await fetch(url);
-      let jsonData = await response.json();
-      let stockData = this.convertData(jsonData);
-      // setting data intent for Series Title, e.g. FinancialChart usage
-      stockData.__dataIntents = {
-        close: ["SeriesTitle/Google"]
-      };
-      return new Promise((resolve, reject) => {
-        resolve(stockData);
-      });
-    }
-  
-    static convertData(jsonData) {
+      return stockData;
+  }
+
+  static convertData(jsonData) {
       let stockItems = [];
-  
-      for (let json of jsonData) {
-        let parts = json.date.split("-"); // "2020-01-01"
-        let item = {};
-        item.date = new Date(parts[0], parts[1] - 1, parts[2]);
-        item.open = json.open;
-        item.high = json.high;
-        item.low = json.low;
-        item.close = json.close;
-        item.volume = json.volume;
-        stockItems.push(item);
+
+      for (let date in jsonData) {
+          let data = jsonData[date];
+          let item = {};
+          item.date = new Date(date);
+          item.open = parseFloat(data["1. open"]);
+          item.high = parseFloat(data["2. high"]);
+          item.low = parseFloat(data["3. low"]);
+          item.close = parseFloat(data["4. close"]);
+          item.volume = parseInt(data["5. volume"], 10);
+          stockItems.push(item);
       }
-  
+      stockItems.sort((a, b) => a.date - b.date);
+
       return stockItems;
-    }
   }
-  
-  class StockItem {
-    constructor() {
-      this.open = undefined;
-      this.close = undefined;
-      this.high = undefined;
-      this.low = undefined;
-      this.volume = undefined;
-      this.date = undefined;
-    }
+};
+
+class StockItem {
+  constructor(open, close, high, low, volume, date) {
+      this.open = open;
+      this.close = close;
+      this.high = high;
+      this.low = low;
+      this.volume = volume;
+      this.date = date;
   }
-  
-  export default StocksHistory;
-  export { StockItem };  
+};
+
+export default StocksHistory;
+export { StockItem };
