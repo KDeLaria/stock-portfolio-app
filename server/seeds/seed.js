@@ -1,11 +1,17 @@
 // Need connection
-const db = require('../config/connection');
+const conn = require('../config/connection');
 
 const { Stocks } = require('../models');
 
 const stockSeedData = require('./sp500.json');
 
-db.once('open', async () => {
+conn.once('open', async () => {
+
+   // Deletes old stocks if present
+   let stocksCheck = await conn.db.listCollections({ name: 'stocks' }).toArray();
+   if (stocksCheck.length) {
+      await connection.dropCollection('stocks');
+   }
 
    console.log("I am getting ready to load the stock data.")
 

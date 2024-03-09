@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
-const {ObjectId} = require("mongoose");
 require("dotenv").config();
 
 const { getAllUsers, createUser, deleteUser, getUser,
@@ -63,7 +62,7 @@ router.post("/", async (req, res) => {
 
 router.post("/logout", async(req, res) => {
     try {
-      res.status(200).cookie("auth_cookie", "").json({ status: "success" })
+      res.status(200).cookie("auth_cookie", "").json({ status: "success" });
     }catch(err){
       console.log(err.message);
       res.status(401).json({ status: "error", message: "Could not you logout." })
@@ -73,8 +72,8 @@ router.post("/logout", async(req, res) => {
   router.post("/login", async(req, res) => {
     try {
       const payload = await loginHandler(req.body.username, req.body.password);
-      console.log(payload);
-      const token = createToken(payload._id);
+      // req.session.userId = payload?._id; //////////////////////////////////////////////
+      const token = setToken(payload?._id);
       res.status(200).cookie("auth_cookie", token).json(payload);
     }catch(err){
       console.log(err.message);
