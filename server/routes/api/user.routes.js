@@ -72,8 +72,8 @@ router.post("/logout", async(req, res) => {
   router.post("/login", async(req, res) => {
     try {
       const payload = await loginHandler(req.body.username, req.body.password);
-      req.session.userId = payload?._id; //////////////////////////////////////////////
-      const token = createToken(payload?._id);
+      // req.session.userId = payload?._id; //////////////////////////////////////////////
+      const token = setToken(payload?._id);
       res.status(200).cookie("auth_cookie", token).json(payload);
     }catch(err){
       console.log(err.message);

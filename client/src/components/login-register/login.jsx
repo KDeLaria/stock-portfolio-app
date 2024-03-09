@@ -20,9 +20,10 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    clearWarnings();
     if (loginUsername && loginPassword) {
       try {
-        const query = await fetch("/api/user", {
+        const query = await fetch("/api/user/login", {
           method: "POST",
           body: JSON.stringify({
             username: loginUsername,
@@ -36,6 +37,7 @@ function LoginPage() {
         if (result?.status === "error") {
           setLoginMessage("Invalid username or password.");
         } else {
+          clearForm();
           window.location.href = "/";
         }
       }

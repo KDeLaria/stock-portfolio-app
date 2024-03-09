@@ -9,7 +9,7 @@ const {createStock, deleteStock, updateStock, getStock,
 
 router.get("/", async (req, res) => {
     try {
-        const payload = await getAllPortfolio(req.session.userId);
+        const payload = await getAllPortfolio();//getAllPortfolio(req.session.userId);
         res.status(200).json(payload);
     } catch (err) {
         console.log(err.message);
