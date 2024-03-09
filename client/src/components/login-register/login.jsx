@@ -43,7 +43,7 @@ function LoginPage() {
           auth.props.value.loggedInUser = result._doc.username;
           auth.props.value.userId = result._doc._id;
           console.log(auth)
-          //window.location.href = "/";
+          window.location.href = "/";
         }
       }
       catch (err) {

@@ -50,7 +50,7 @@ function Register() {
               auth.loggedInUser = results.username;
               auth.userId = results._id;
               console.log(auth)
-              //window.location.href = "/";
+              window.location.href = "/";
             }
             else {
               throw new Error("");
