@@ -2,7 +2,7 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const { getAllStocks } = require('../../controllers/')
+//const { getAllStocks } = require('../../controllers/')  // This needs updating
 
 
 router.get("/", async (req, res) => {
