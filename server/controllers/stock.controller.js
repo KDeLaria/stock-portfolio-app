@@ -1,8 +1,8 @@
-const Portfolio = require("../models/Portfolio");
+const Stocks = require("../models/Stocks");
 
-async function getAllPortfolio (userId) {
+async function getAllStocks () {
     try {
-        return await Portfolio.find({owner_id:userId});
+        return await Stocks.find();
     }
     catch (er) {
         throw new Error (er.message);
@@ -11,7 +11,7 @@ async function getAllPortfolio (userId) {
 
 async function getStock (id) {
     try {
-        return await Portfolio.findById(id);
+        return await Stocks.findById(id);
     }
     catch (er) {
         throw new Error (er.message);
@@ -20,7 +20,7 @@ async function getStock (id) {
 
 async function deleteStock (id) {
     try {
-        return await Portfolio.findByIdAndDelete(id);
+        return await Stocks.findByIdAndDelete(id);
     }
     catch (er) {
         throw new Error (er.message);
@@ -29,7 +29,7 @@ async function deleteStock (id) {
 
 async function updateStock (id) {
     try {
-        return await Portfolio.findByIdAndUpdate(id);
+        return await Stocks.findByIdAndUpdate(id);
     }
     catch (er) {
         throw new Error (er.message);
@@ -38,11 +38,11 @@ async function updateStock (id) {
 
 async function createStock (data) {
     try {
-        return await Portfolio.create(data);
+        return await Stocks.create(data);
     }
     catch (er) {
         throw new Error (er.message);
     }
 }
 
-module.exports = {createStock, deleteStock, updateStock, getStock, getAllPortfolio};
+module.exports = {createStock, deleteStock, updateStock, getStock, getAllStocks};
