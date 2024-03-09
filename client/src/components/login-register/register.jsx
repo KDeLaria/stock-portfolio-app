@@ -49,7 +49,6 @@ function Register() {
               clearForm();
               auth.loggedInUser = results.username;
               auth.userId = results._id;
-              console.log(auth)
               window.location.href = "/";
             }
             else {
