@@ -31,7 +31,7 @@ function Register() {
     clearWarnings();
     if (name && regUsername && password) {
       if (password === confirmPassword) {
-        if (password > 7) {
+        if (password.length > 7) {
           try {
             const query = await fetch("/api/user", {
               method: "POST",
