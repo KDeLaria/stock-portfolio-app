@@ -26,8 +26,6 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically handle the registration logic,
-    // for example, sending a request to your backend server
     clearWarnings();
     if (name && regUsername && password) {
       if (password === confirmPassword) {
@@ -71,8 +69,6 @@ function Register() {
         setPasswordWarning("Password is required.");
       }
     }
-    // Make sure to add validation for the inputs, for example, check if passwords match
-
   };
 
   return (
