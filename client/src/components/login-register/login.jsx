@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useAuth from "../../utils/Auth";
 
 function LoginPage() {
   const [loginUsername, setloginUsername] = useState('');
@@ -6,6 +7,7 @@ function LoginPage() {
   const [loginMessage, setLoginMessage] = useState("");
   const [usernameWarning, setUsernameWarning] = useState("");
   const [passwordWarning, setPasswordWarning] = useState("");
+  const auth = useAuth();
 
   function clearWarnings () {
     setLoginMessage("");
@@ -20,10 +22,10 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    clearWarnings();
     if (loginUsername && loginPassword) {
-      Auth.login(loginUsername, loginPassword);
       try {
-        const query = await fetch("/api/user", {
+        const query = await fetch("/api/user/login", {
           method: "POST",
           body: JSON.stringify({
             username: loginUsername,
@@ -37,6 +39,9 @@ function LoginPage() {
         if (result?.status === "error") {
           setLoginMessage("Invalid username or password.");
         } else {
+          clearForm();
+          auth.props.value.loggedInUser = result._doc.username;
+          auth.props.value.userId = result._doc._id;
           window.location.href = "/";
         }
       }

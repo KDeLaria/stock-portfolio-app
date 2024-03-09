@@ -8,7 +8,9 @@ const portfolioSchema = new Schema({
       type: String
    },
    owner_id: {
-      type: Number
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
    }
 }, {
    timestamps: false
