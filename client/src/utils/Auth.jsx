@@ -8,7 +8,8 @@ export const useAuth = () => useContext(AuthContext);
 
 export default function AuthProvider (props) {
     const [loggedIn, setLoggedIn] = useState(false);
-    const [loggedInUser, setLoggedInUser] = useState(null);
+    let loggedInUser = "";
+    let userId="";
     
     function checkUser () {
         const cookie = Cookie.get("auth_cookie");
@@ -22,9 +23,10 @@ export default function AuthProvider (props) {
           headers: { 'Content-Type': 'application/json' }
         });
         const result = await results.json();
-        if( result?.status === "success" ){
-          setLoggedIn();
-          setLoggedInUser();
+        if( result?.status === "success" ) {
+          setLoggedIn(false);
+          loggedInUser = "";
+          userId = "";
           window.location.href = "/";
         }
       }
@@ -32,10 +34,9 @@ export default function AuthProvider (props) {
     useEffect(()=>{
         checkUser();
     },[])
-
+      let user = "";
     return (
-        <AuthContext.Provider value={{loggedIn, logout, loggedInUser, 
-            setLoggedInUser}} {...props}>
+        <AuthContext.Provider value={{loggedIn, logout, loggedInUser, userId}} {...props}>
         </AuthContext.Provider>
     )
 }
