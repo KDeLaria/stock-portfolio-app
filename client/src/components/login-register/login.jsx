@@ -40,7 +40,7 @@ function LoginPage() {
           setLoginMessage("Invalid username or password.");
         } else {
           clearForm();
-          auth.props.value.loggedInUser = result._doc.username;
+          auth.props.value.loggedInUser = result._doc.name;
           auth.props.value.userId = result._doc._id;
           window.location.href = "/";
         }

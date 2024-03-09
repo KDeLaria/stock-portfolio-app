@@ -47,7 +47,7 @@ function Register() {
 
             if (results?.status !== "error") {
               clearForm();
-              auth.loggedInUser = results.username;
+              auth.loggedInUser = results.name;
               auth.userId = results._id;
               window.location.href = "/";
             }
