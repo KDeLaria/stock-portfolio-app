@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../utils/Auth';
 
 function Register() {
   const [name, setName] = useState('');
@@ -9,15 +10,16 @@ function Register() {
   const [usernameWarning, setUsernameWarning] = useState("");
   const [nameWarning, setNameWarning] = useState("");
   const [passwordWarning, setPasswordWarning] = useState("");
+  const auth = useAuth();
 
-  function clearWarnings (){
+  function clearWarnings() {
     setRegisterMessage("");
     setPasswordWarning("");
     setUsernameWarning("");
     setUsernameWarning("");
   }
 
-  function clearForm () {
+  function clearForm() {
     setName("");
     setRegUsername("");
     setPassword("");
@@ -29,29 +31,37 @@ function Register() {
     clearWarnings();
     if (name && regUsername && password) {
       if (password === confirmPassword) {
-        try {
-          const query = await fetch("/api/user", {
-            method: "POST",
-            body: JSON.stringify({
-              name: name, username: regUsername,
-              password: password
-            }),
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-          const results = await query.json();
+        if (password > 7) {
+          try {
+            const query = await fetch("/api/user", {
+              method: "POST",
+              body: JSON.stringify({
+                name: name, username: regUsername,
+                password: password
+              }),
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+            const results = await query.json();
 
-          if (results?.status !== "error") {
-            clearForm();
-            window.location.href = "/";
+            if (results?.status !== "error") {
+              clearForm();
+              auth.loggedInUser = results.username;
+              auth.userId = results._id;
+              console.log(auth)
+              //window.location.href = "/";
+            }
+            else {
+              throw new Error("");
+            }
           }
-          else {
-            throw new Error("");
+          catch (err) {
+            setRegisterMessage("Sorry, we are unable to register your account.");
           }
         }
-        catch (err) {
-          setRegisterMessage("Sorry, we are unable to register your account.");
+        else {
+          setPasswordWarning("The password must be have at least 8 characters.");
         }
       }
       else {
@@ -84,7 +94,7 @@ function Register() {
               id="name"
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
               value={name}
-              onChange={(e) => {setName(e.target.value); clearWarnings();}}
+              onChange={(e) => { setName(e.target.value); clearWarnings(); }}
             />
           </div>
           <div className="mt-4">
@@ -95,7 +105,7 @@ function Register() {
               id="regUsername"
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
               value={regUsername}
-              onChange={(e) => {setRegUsername(e.target.value); clearWarnings();}}
+              onChange={(e) => { setRegUsername(e.target.value); clearWarnings(); }}
             />
           </div>
           <div className="mt-4">
@@ -106,7 +116,7 @@ function Register() {
               id="password"
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
               value={password}
-              onChange={(e) => {setPassword(e.target.value); clearWarnings();}}
+              onChange={(e) => { setPassword(e.target.value); clearWarnings(); }}
             />
           </div>
           <div className="mt-4">
@@ -117,7 +127,7 @@ function Register() {
               id="confirmPassword"
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
               value={confirmPassword}
-              onChange={(e) => {setConfirmPassword(e.target.value); clearWarnings();}}
+              onChange={(e) => { setConfirmPassword(e.target.value); clearWarnings(); }}
             />
           </div>
           {registerMessage.length > 0 && (<div className='text-red-600'>{registerMessage}</div>)}

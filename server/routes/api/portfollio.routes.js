@@ -7,9 +7,9 @@ const {createStock, deleteStock, updateStock, getStock,
     getAllPortfolio}= require("../../controllers/portfolio.controller");
 
 
-router.get("/", async (req, res) => {
+router.get("/:userId", async (req, res) => {
     try {
-        const payload = await getAllPortfolio();//getAllPortfolio(req.session.userId);
+        const payload = await getAllPortfolio(req.params.userId);
         res.status(200).json(payload);
     } catch (err) {
         console.log(err.message);
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:userId/:id", async (req, res) => {
     try {
         const payload = await getStock(req.params.id);
         res.status(200).json(payload);
