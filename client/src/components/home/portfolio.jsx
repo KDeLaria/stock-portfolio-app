@@ -1,9 +1,12 @@
 import React from 'react';
+import useAuth from "../../utils/Auth";
 
-const Portfolio = ({ loggedIn }) => {
+const Portfolio = () => {
+  const auth = useAuth();
+  console.log(auth)
   return (
     <div className="">
-      {loggedIn ? (
+      {auth.props.value.loggedIn ? (
         <>
           <p className="font-semibold mb-4">Your portfolio trendline</p>
           {/* Replace with an actual graph component */}
