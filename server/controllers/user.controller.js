@@ -80,6 +80,16 @@ async function loginHandler (username, pswd) {
     }
 }
 
+async function findUser (username) {
+    try {
+        const userData = await User.findOne(username);
+        return (userData) ? true : false;
+    }
+    catch (er) {
+        throw new Error (er.message);
+    }
+}
 
-module.exports = {getAllUsers, createUser, deleteUser, getUser, 
+
+module.exports = {getAllUsers, createUser, deleteUser, getUser, findUser,
     getAllUsers, updateUser, loginHandler};

@@ -40,12 +40,16 @@ function LoginPage() {
           setLoginMessage("Invalid username or password.");
         } else {
           clearForm();
-          auth.props.value.loggedInUser = result._doc.name;
-          auth.props.value.userId = result._doc._id;
+          //auth.props.value.setName(result._doc.name);
+          //auth.props.value.setUser_id(result._doc._id);
+          //console.log("(from db)name: ",result._doc.name);
+          //console.log(auth);
+          
           window.location.href = "/";
         }
       }
       catch (err) {
+        setLoginMessage("Invalid username or password.");
         console.log(err.message);
       }
     }

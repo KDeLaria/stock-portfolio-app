@@ -26,8 +26,9 @@ console.log(Auth)
         className="py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-800 transition-colors duration-300"
         onClick={handleLoginClick} // Add the click handler here
       >    
-        {Auth.props.value.loggedIn ? (<span className="">Logout</span>) : (<span>Login</span>)}
-      </button>{Auth.props.value.loggedIn && (<span>| Welcome {Auth.props.loggedInUser},</span>)}
+        {Auth.props.value.loggedIn ? (<span>Logout</span>) : (<span>Login</span>)}
+      </button>
+      {/* {Auth.props.value.loggedIn && (<span>| Welcome {Auth.props.name},</span>)} */}
     </header>
   );
 };
