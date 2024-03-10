@@ -5,8 +5,6 @@ import {useAuth} from "../utils/Auth";
 import MainHome from "./mainHome";
 
 
-
-
 const LoginRegister = () => {
   const { loggedIn} = useAuth();
   if (loggedIn) {
