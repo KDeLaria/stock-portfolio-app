@@ -1,62 +1,56 @@
 class PortfolioHistory {
-    // gets stock OHLC prices for multiple stocks
-    static async getMultipleStocks(portfolioArr) {
-        // getting prices of multiples stocks asynchronously
-        const dataSources = [
-            await this.getStock(portfolioArr),
-        ];
-  
-        return dataSources;
-    }
-  
-    // gets IBM stock OHLC prices from a JSON string
-    static async getStock(portfolioArr) {
-        for (let i in portfolioArr) {
-            let symbol = portfolioArr[i];
-            let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=SK3QDQ16A8J9OKV6`;
-            let response = await fetch(url);
-            let jsonData = await response.json();
-            let stockData = this.convertData(jsonData["Time Series (Daily)"]);
-            // setting data intent for Series Title, e.g., FinancialChart usage
-            stockData.__dataIntents = {
-                close: [`SeriesTitle/Portfolio`]
-            };
-
-            console.log(stockData[i]);
-        }
+    static async getMultipleStocks(symbol) {
+        const promises = symbol.map(miniSym => this.getStock(miniSym));
+        const stockDatas = await Promise.all(promises);
+        return this.aggregateData(stockDatas);
     }
 
-    static convertData(jsonData) {
-        let stockItems = [];
-    
+    static async getStock(symbol) {
+        const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=AIWEOVYS3KST4MWY`;
+        const response = await fetch(url);
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return this.convertData(jsonData["Time Series (Daily)"], symbol);
+    }
+
+    static convertData(jsonData, symbol) {
+        const stockItems = [];
         for (let date in jsonData) {
-            let data = jsonData[date];
-            let item = {};
-            item.date = new Date(date);
-            item.open = parseFloat(data["1. open"]);
-            item.high = parseFloat(data["2. high"]);
-            item.low = parseFloat(data["3. low"]);
-            item.close = parseFloat(data["4. close"]);
-            item.volume = parseInt(data["5. volume"], 10);
-            stockItems.push(item);
+            const data = jsonData[date];
+            stockItems.push({
+                date: date,
+                symbol: symbol,
+                open: parseFloat(data["1. open"]),
+                high: parseFloat(data["2. high"]),
+                low: parseFloat(data["3. low"]),
+                close: parseFloat(data["4. close"]),
+                volume: parseInt(data["5. volume"], 10),
+            });
         }
-        stockItems.sort((a, b) => a.date - b.date);
-    
         return stockItems;
     }
 
-  };
-  
-  class StockItem {
-    constructor(open, close, high, low, volume, date) {
-        this.open = open;
-        this.close = close;
-        this.high = high;
-        this.low = low;
-        this.volume = volume;
-        this.date = date;
+    static aggregateData(stockDatas) {
+        const aggregatedData = {};
+
+        stockDatas.flat().forEach(({ date, open, high, low, close, volume }) => {
+            if (!aggregatedData[date]) {
+                aggregatedData[date] = { open: 0, high: 0, low: 0, close: 0, volume: 0 };
+            }
+            aggregatedData[date].open += open;
+            aggregatedData[date].high += high;
+            aggregatedData[date].low += low;
+            aggregatedData[date].close += close;
+            aggregatedData[date].volume += volume;
+        });
+
+        const result = Object.entries(aggregatedData).map(([date, data]) => ({
+            date, ...data
+        })).sort((a, b) => b.date.localeCompare(a.date));
+        
+        console.log(result)
+        return result;
     }
-  };
-  
-  export default PortfolioHistory;
-  export { StockItem };
+}
+
+export default PortfolioHistory;
