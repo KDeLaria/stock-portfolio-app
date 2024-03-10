@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../utils/Auth';
 
 function Register() {
-  const [name, setName] = useState('');
+  const [regName, setRegName] = useState('');
   const [regUsername, setRegUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -12,6 +12,7 @@ function Register() {
   const [passwordWarning, setPasswordWarning] = useState("");
   const [unusedUsername, setUnusedUsername] = useState(true);
   const auth = useAuth();
+  const {setName, setUser_id} = auth;
 
   function clearWarnings() {
     setRegisterMessage("");
@@ -21,7 +22,7 @@ function Register() {
   }
 
   function clearForm() {
-    setName("");
+    setRegName("");
     setRegUsername("");
     setPassword("");
     setConfirmPassword("");
@@ -46,14 +47,14 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     clearWarnings();
-    if (name && regUsername && password && unusedUsername) {
+    if (regName && regUsername && password && unusedUsername) {
       if (password === confirmPassword) {
         if (password.length > 7) {
           try {
             const query = await fetch("/api/user", {
               method: "POST",
               body: JSON.stringify({
-                name: name, username: regUsername,
+                name: regName, username: regUsername,
                 password: password
               }),
               headers: {
@@ -64,12 +65,8 @@ function Register() {
 
             if (results?.status !== "error") {
               clearForm();
-              //auth.setName(results._doc.name);
-              //auth.setUser_id(results._doc._id);
-              //console.log("(from db)name: ",results._doc.name);
-              //console.log(auth);
-
-              window.location.href = "/";
+              setName(results._doc.name);
+              setUser_id(results._doc._id);
             }
             else {
               throw new Error(results.message);
@@ -111,10 +108,10 @@ function Register() {
             <input
               type="text"
               placeholder="Name"
-              id="name"
+              id="regName"
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
-              value={name}
-              onChange={(e) => { setName(e.target.value); clearWarnings();}}
+              value={regName}
+              onChange={(e) => { setRegName(e.target.value); clearWarnings();}}
             />
           </div>
           <div className="mt-4">

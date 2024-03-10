@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useAuth from "../../utils/Auth";
+import {useAuth} from "../../utils/Auth";
 
 function LoginPage() {
   const [loginUsername, setloginUsername] = useState('');
@@ -7,7 +7,7 @@ function LoginPage() {
   const [loginMessage, setLoginMessage] = useState("");
   const [usernameWarning, setUsernameWarning] = useState("");
   const [passwordWarning, setPasswordWarning] = useState("");
-  const auth = useAuth();
+  const {setName, setUser_id} = useAuth();
 
   function clearWarnings () {
     setLoginMessage("");
@@ -40,12 +40,8 @@ function LoginPage() {
           setLoginMessage("Invalid username or password.");
         } else {
           clearForm();
-          //auth.props.value.setName(result._doc.name);
-          //auth.props.value.setUser_id(result._doc._id);
-          //console.log("(from db)name: ",result._doc.name);
-          //console.log(auth);
-          
-          window.location.href = "/";
+          setName(result._doc.name);
+          setUser_id(result._doc._id);
         }
       }
       catch (err) {

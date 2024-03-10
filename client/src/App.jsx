@@ -4,7 +4,7 @@ import MainHome from "./pages/mainHome";
 import LoginRegister from "./pages/login-register";
 import "./App.css";
 import "./output.css"
-import AuthProvider from "./utils/Auth";
+import { AuthProvider } from "./utils/Auth";
 
 function App() {
   return (
