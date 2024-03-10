@@ -1,42 +1,50 @@
 import {createContext, useContext, useState, useEffect} from "react"
 import Cookie from "js-cookie";
 
-const AuthContext = createContext();
+const AuthContext = createContext({
+  loggedIn: false,
+  name: "",
+  user_id: "",
+  setLoggedIn: () => {},
+  setName: () => {},
+  setUser_id: () =>  {}
+});
 
 export const useAuth = () => useContext(AuthContext);
 
 
-export default function AuthProvider (props) {
+export const AuthProvider = function(props) {
     const [loggedIn, setLoggedIn] = useState(false);
-    let loggedInUser = "";
-    let userId="";
+    const [name, setName] = useState("");
+    const [user_id, setUser_id] = useState("");
     
     function checkUser () {
         const cookie = Cookie.get("auth_cookie");
-        setLoggedIn( cookie ? true : false );
+        setLoggedIn( (cookie && user_id) ? true : false );
     }
 
-    async function logout(){
+    async function logout() {
         const results = await fetch("/api/user/logout", {
           method: "POST",
           body: "",
           headers: { 'Content-Type': 'application/json' }
         });
         const result = await results.json();
-        if( result?.status === "success" ) {
+        if( result.status === "success" ) {
           setLoggedIn(false);
-          loggedInUser = "";
-          userId = "";
+          setName("");
+          setUser_id("")
           window.location.href = "/";
-        }
-      }
+        };
+      };
 
     useEffect(()=>{
         checkUser();
-    },[])
-      let user = "";
+    },[user_id]);
+    
     return (
-        <AuthContext.Provider value={{loggedIn, logout, loggedInUser, userId}} {...props}>
+        <AuthContext.Provider value={{loggedIn, logout, setName, setUser_id,
+          name, user_id}}>{props.children}
         </AuthContext.Provider>
     )
 }

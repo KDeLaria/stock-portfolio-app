@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useAuth from "../../utils/Auth";
+import {useAuth} from "../../utils/Auth";
 
 function LoginPage() {
   const [loginUsername, setloginUsername] = useState('');
@@ -7,7 +7,7 @@ function LoginPage() {
   const [loginMessage, setLoginMessage] = useState("");
   const [usernameWarning, setUsernameWarning] = useState("");
   const [passwordWarning, setPasswordWarning] = useState("");
-  const auth = useAuth();
+  const {setName, setUser_id} = useAuth();
 
   function clearWarnings () {
     setLoginMessage("");
@@ -40,12 +40,12 @@ function LoginPage() {
           setLoginMessage("Invalid username or password.");
         } else {
           clearForm();
-          auth.props.value.loggedInUser = result._doc.username;
-          auth.props.value.userId = result._doc._id;
-          window.location.href = "/";
+          setName(result._doc.name);
+          setUser_id(result._doc._id);
         }
       }
       catch (err) {
+        setLoginMessage("Invalid username or password.");
         console.log(err.message);
       }
     }

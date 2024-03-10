@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../utils/Auth';
 
 function Register() {
-  const [name, setName] = useState('');
+  const [regName, setRegName] = useState('');
   const [regUsername, setRegUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -10,7 +10,9 @@ function Register() {
   const [usernameWarning, setUsernameWarning] = useState("");
   const [nameWarning, setNameWarning] = useState("");
   const [passwordWarning, setPasswordWarning] = useState("");
+  const [unusedUsername, setUnusedUsername] = useState(true);
   const auth = useAuth();
+  const {setName, setUser_id} = auth;
 
   function clearWarnings() {
     setRegisterMessage("");
@@ -20,23 +22,39 @@ function Register() {
   }
 
   function clearForm() {
-    setName("");
+    setRegName("");
     setRegUsername("");
     setPassword("");
     setConfirmPassword("");
   }
 
+  async function checkUser() {
+    if (regUsername !== "") {
+      setUnusedUsername(true);
+      const query = await fetch("/api/user/check", {
+        method: "POST",
+        body: JSON.stringify({username: regUsername}),
+        headers: { 'Content-Type': 'application/json'}
+      });
+      const results = await query.json();
+      if (results) {
+        setUnusedUsername(false);
+        setRegisterMessage("That username already exists.")
+      }
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     clearWarnings();
-    if (name && regUsername && password) {
+    if (regName && regUsername && password && unusedUsername) {
       if (password === confirmPassword) {
         if (password.length > 7) {
           try {
             const query = await fetch("/api/user", {
               method: "POST",
               body: JSON.stringify({
-                name: name, username: regUsername,
+                name: regName, username: regUsername,
                 password: password
               }),
               headers: {
@@ -47,15 +65,15 @@ function Register() {
 
             if (results?.status !== "error") {
               clearForm();
-              auth.loggedInUser = results.username;
-              auth.userId = results._id;
-              window.location.href = "/";
+              setName(results._doc.name);
+              setUser_id(results._doc._id);
             }
             else {
-              throw new Error("");
+              throw new Error(results.message);
             }
           }
           catch (err) {
+            console.log(err.mesage)
             setRegisterMessage("Sorry, we are unable to register your account.");
           }
         }
@@ -90,10 +108,10 @@ function Register() {
             <input
               type="text"
               placeholder="Name"
-              id="name"
+              id="regName"
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
-              value={name}
-              onChange={(e) => { setName(e.target.value); clearWarnings(); }}
+              value={regName}
+              onChange={(e) => { setRegName(e.target.value); clearWarnings();}}
             />
           </div>
           <div className="mt-4">
@@ -104,7 +122,7 @@ function Register() {
               id="regUsername"
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
               value={regUsername}
-              onChange={(e) => { setRegUsername(e.target.value); clearWarnings(); }}
+              onChange={(e) => { setRegUsername(e.target.value); clearWarnings();}} onBlur={checkUser}
             />
           </div>
           <div className="mt-4">

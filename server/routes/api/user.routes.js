@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const { getAllUsers, createUser, deleteUser, getUser,
-    updateUser, loginHandler } = require("../../controllers/user.controller");
+    updateUser, loginHandler, findUser } = require("../../controllers/user.controller");
 
 function setToken (id) {
     return jwt.sign({ id: id }, process.env.JWT_SECRET);
@@ -72,7 +72,6 @@ router.post("/logout", async(req, res) => {
   router.post("/login", async(req, res) => {
     try {
       const payload = await loginHandler(req.body.username, req.body.password);
-      // req.session.userId = payload?._id; //////////////////////////////////////////////
       const token = setToken(payload?._id);
       res.status(200).cookie("auth_cookie", token).json(payload);
     }catch(err){
@@ -81,4 +80,13 @@ router.post("/logout", async(req, res) => {
     }
   });
 
+  router.post("/check", async (req, res) => {
+    try {
+        const payload = await findUser(req.body);
+        res.status(200).json(payload);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({ status: "error", message: err.message });
+    }
+});
 module.exports = router;

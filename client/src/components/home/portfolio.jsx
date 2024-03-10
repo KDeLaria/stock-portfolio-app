@@ -1,6 +1,8 @@
 import React from 'react';
+import {useAuth} from "../../utils/Auth";
 
-const Portfolio = ({ loggedIn }) => {
+const Portfolio = () => {
+  const {loggedIn} = useAuth();
   return (
     <div className="">
       {loggedIn ? (
