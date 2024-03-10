@@ -29,7 +29,7 @@ class Trendline extends React.Component {
         this.setState({ data: stocks });
       });
     } else if (this.props.portfolioArr && this.props.portfolioArr.length > 0) {
-      PortfolioHistory.getStock(this.props.portfolioArr).then((stocks) => {
+      PortfolioHistory.getMultipleStocks(this.props.portfolioArr).then((stocks) => {
         this.setState({ data: stocks });
       });
     }

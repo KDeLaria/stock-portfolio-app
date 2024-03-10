@@ -14,6 +14,7 @@ class StocksHistory {
       let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=GY01Z3INJ691AGCF`;
       let response = await fetch(url);
       let jsonData = await response.json();
+      console.log(jsonData);
       let stockData = this.convertData(jsonData["Time Series (Daily)"]);
       // setting data intent for Series Title, e.g., FinancialChart usage
       stockData.__dataIntents = {
@@ -37,6 +38,8 @@ class StocksHistory {
           stockItems.push(item);
       }
       stockItems.sort((a, b) => a.date - b.date);
+
+      console.log(stockItems)
 
       return stockItems;
   }

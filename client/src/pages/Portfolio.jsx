@@ -4,7 +4,7 @@ import TrendlineHelper from "../components/portfolio/TrendlineHelper";
 
 function Portfolio() {
   const portfolioArr = ["TSLA", "AAPL", "F"];
-  const [trendlineProps, setTrendlineProps] = useState({ portfolioArr: [] });
+  const [trendlineProps, setTrendlineProps] = useState({ portfolioArr });
 
   const handleButtonClick = (symbol) => {
     if (symbol === "Portfolio") {
