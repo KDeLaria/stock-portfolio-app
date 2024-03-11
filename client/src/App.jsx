@@ -6,7 +6,6 @@ import Search from "./pages/search"
 import "./App.css";
 import "./output.css"
 import { AuthProvider } from "./utils/Auth";
-import Portfolio from "./pages/Portfolio";
 
 function App() {
   return (
