@@ -5,11 +5,20 @@ import LoginRegister from "./pages/login-register";
 import "./App.css";
 import "./output.css"
 import { AuthProvider } from "./utils/Auth";
-import Portfolio from "./pages/Portfolio";
 
 function App() {
   return (
-    <Portfolio />
+    <AuthProvider>
+    <Router>
+       <div className="bg-gray-100 text-black">
+         <Routes>
+           <Route path="/" element={<MainHome />} />
+           <Route path="/login" element={<LoginRegister />} />
+           {/* Add more routes as needed */}
+         </Routes>
+       </div>
+     </Router>
+   </AuthProvider>
   );
 }
 
