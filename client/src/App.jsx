@@ -22,7 +22,9 @@ function App() {
           </Routes>
         </div>
       </Router>
+      <Portfolio />
     </AuthProvider>
+
   );
 }
 
