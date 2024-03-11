@@ -1,8 +1,11 @@
-import React from 'react';
+// import React from 'react';
+import React, { useState, useEffect } from "react";
 import Search from '../components/search/search';
-import ListPortfolio from '../components/ListPortfolio';
+import ListPortfolio from '../components/search/ListPortfolio';
+import Header from '../components/home/header'
+import Footer from '../components/home/footer'
 
-const Search = () => {
+const SearchStocks = () => {
 
    // This is for what stocks the user owns.  Displays on right side of screen.
    const [portfolio, setPortfolio] = useState([]);
@@ -17,6 +20,8 @@ const Search = () => {
          // This will return all fields, but we want just ticker and shares_owned
          const result = await query.json()
          if (result.status === "success") {
+            // Keep just the ticker and shares_owned attributes
+            
             setPortfolio(result.payload)
          }
       } catch (err) {
@@ -24,18 +29,20 @@ const Search = () => {
       }
    }
 
-   // Whenever the page is rendered, show all the stocks has in their portfolio
-   useEffect(() => {
-      getPortfolio()
-   }, [])
+   // // Whenever the page is rendered, show all the stocks has in their portfolio
+   // useEffect(() => {
+   //    getPortfolio()
+   // }, [])
 
    return (
       <>
          <div className="container">
+            <Header />
             <Search />
+            <Footer />
          </div>
 
-
+{/* 
          <div className="container">
             <div className="row">
                <div className="col-6">
@@ -54,7 +61,7 @@ const Search = () => {
                   )}
                </div>
             </div>
-         </div>
+         </div> */}
 
 
 
@@ -63,4 +70,4 @@ const Search = () => {
    )
 };
 
-export default Search;
+export default SearchStocks;

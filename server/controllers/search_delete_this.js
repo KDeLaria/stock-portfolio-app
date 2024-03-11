@@ -5,7 +5,7 @@ const Stocks = require('../models/Stocks')
 
 async function getAllStocks () {
    try{
-      const stocksFound = await Stocks.find(search_term)
+      return await Stocks.find({ company_name: { $regex: regexPattern } })
       // Keep ticket symbol and company name
 
    }
