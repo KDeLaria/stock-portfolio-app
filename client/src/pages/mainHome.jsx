@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Header from '../components/home/header';
 import NewsArticle from '../components/home/newsArticle';
 import Trendline from '../components/home/Trendline';
@@ -8,6 +8,16 @@ import Footer from '../components/home/footer';
 
 
 const HomePage = () => {
+  const portfolioArr = ["TSLA", "AAPL", "F", "AMD", "MSFT", "WBD", "HPE", "T", "GOOG", "CMCSA", "PYPL"];
+  const [trendlineProps, setTrendlineProps] = useState({ portfolioArr });
+
+  const handleButtonClick = (symbol) => {
+    if (symbol === "Portfolio") {
+      setTrendlineProps({ portfolioArr });
+    } else {
+      setTrendlineProps({ symbol });
+    }
+  };
 
   return (
     <div className="">
@@ -19,11 +29,11 @@ const HomePage = () => {
           {/* ... other sections like NewsImage/Link ... */}
         </div>
         <div className="grid md:grid-cols-2 gap-10 mb-4 m-2">
-          <Trendline />
+          <Trendline {...trendlineProps} />
           <Portfolio />
           
         </div>
-        <Trending />
+        <Trending onButtonClick={handleButtonClick} />
         <Footer />
       </div>
     </div>
