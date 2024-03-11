@@ -8,7 +8,7 @@ const Trending = ({ onButtonClick }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiKey = "YOUR_API_KEY";
+      const apiKey = process.env.API_KEY //"YOUR_API_KEY";
       const url = `https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=${apiKey}`;
 
       try {
