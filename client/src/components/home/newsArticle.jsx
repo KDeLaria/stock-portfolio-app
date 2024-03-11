@@ -13,7 +13,7 @@ const NewsArticle = () => {
           params: {
             function: "NEWS_SENTIMENT",
             tickers: "", // Specify tickers here
-            apikey: "YOUR_API_KEY", // Replace with your API key
+            apikey: process.env.API_KEY //"YOUR_API_KEY", // Replace with your API key
           },
         });
 
