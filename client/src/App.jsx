@@ -5,7 +5,8 @@ import LoginRegister from "./pages/login-register";
 import Search from "./pages/search"
 import "./App.css";
 import "./output.css"
-import AuthProvider from "./utils/Auth";
+import { AuthProvider } from "./utils/Auth";
+import Portfolio from "./pages/Portfolio";
 
 function App() {
   return (

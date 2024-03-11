@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const userRoutes = require("./user.routes");
-const portfolioRoutes = require("./portfollio.routes");
+const portfolioRoutes = require("./portfolio.routes");
 const stockRoutes = require("./stock.routes");
 
 

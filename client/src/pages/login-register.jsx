@@ -1,10 +1,8 @@
 import React from 'react';
 import Login from '../components/login-register/login';
 import Register from '../components/login-register/register';
-import useAuth from "../utils/Auth";
+import {useAuth} from "../utils/Auth";
 import MainHome from "./mainHome";
-
-
 
 
 const LoginRegister = () => {

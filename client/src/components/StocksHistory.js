@@ -11,16 +11,18 @@ class StocksHistory {
 
   // gets IBM stock OHLC prices from a JSON string
   static async getStock(symbol) {
-      let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=GY01Z3INJ691AGCF`;
-      let response = await fetch(url);
-      let jsonData = await response.json();
-      console.log(jsonData);
-      let stockData = this.convertData(jsonData["Time Series (Daily)"]);
-      // setting data intent for Series Title, e.g., FinancialChart usage
-      stockData.__dataIntents = {
+        document.querySelector('#loading-overlay').classList.remove('hidden');
+        let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=UMSPYAT6N4ETOBFD`;
+        let response = await fetch(url);
+        let jsonData = await response.json();
+        console.log(jsonData);
+        let stockData = this.convertData(jsonData["Time Series (Daily)"]);
+        // setting data intent for Series Title, e.g., FinancialChart usage
+        stockData.__dataIntents = {
           close: [`SeriesTitle/${symbol}`]
-      };
-      return stockData;
+        };
+        document.querySelector('#loading-overlay').classList.add('hidden');
+        return stockData;
   }
 
   static convertData(jsonData) {

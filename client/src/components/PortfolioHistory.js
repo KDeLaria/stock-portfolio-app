@@ -1,12 +1,14 @@
 class PortfolioHistory {
     static async getMultipleStocks(symbol) {
+        document.querySelector('#loading-overlay').classList.remove('hidden');
         const promises = symbol.map(miniSym => this.getStock(miniSym));
         const stockDatas = await Promise.all(promises);
+        document.querySelector('#loading-overlay').classList.add('hidden');
         return this.aggregateData(stockDatas);
     }
 
     static async getStock(symbol) {
-        const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=AIWEOVYS3KST4MWY`;
+        const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=UMSPYAT6N4ETOBFD`;
         const response = await fetch(url);
         const jsonData = await response.json();
         console.log(jsonData);
@@ -33,23 +35,25 @@ class PortfolioHistory {
     static aggregateData(stockDatas) {
         const aggregatedData = {};
 
-        stockDatas.flat().forEach(({ date, open, high, low, close, volume }) => {
+        stockDatas.flat().forEach(({ open, close, high, low, volume, date }) => {
             if (!aggregatedData[date]) {
                 aggregatedData[date] = { open: 0, high: 0, low: 0, close: 0, volume: 0 };
             }
             aggregatedData[date].open += open;
+            aggregatedData[date].close += close;
             aggregatedData[date].high += high;
             aggregatedData[date].low += low;
-            aggregatedData[date].close += close;
             aggregatedData[date].volume += volume;
+            aggregatedData[date].date = new Date(date);
         });
 
         const result = Object.entries(aggregatedData).map(([date, data]) => ({
             date, ...data
-        })).sort((a, b) => b.date.localeCompare(a.date));
+        })).sort((a, b) => a.date.getTime() - b.date.getTime());
         
+        console.log("Aggregated Result:")
         console.log(result)
-        return result;
+        return result;        
     }
 }
 
