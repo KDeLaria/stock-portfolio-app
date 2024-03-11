@@ -6,13 +6,17 @@ class TrendlineHelper extends React.Component {
       this.props.onButtonClick(e.target.innerHTML);
     };
 
+    const buttons = this.props.portfolioArr.map((item) => (
+      <button key={item} type="button" className="btn btn-primary" onClick={handleClick}>
+        {item}
+      </button>
+    ));
+
     return (
       <>
-        <div className="container-fluid">
+        <div className="grid grid-rows overflow-y-auto h-[50vh]">
           <button type="button" className="btn btn-primary" onClick={handleClick}>Portfolio</button>
-          <button type="button" className="btn btn-primary" onClick={handleClick}>TSLA</button>
-          <button type="button" className="btn btn-primary" onClick={handleClick}>AAPL</button>
-          <button type="button" className="btn btn-primary" onClick={handleClick}>AMD</button>
+          {buttons}
         </div>
       </>
     );
