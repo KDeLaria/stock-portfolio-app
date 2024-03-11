@@ -8,6 +8,8 @@ Stock Portfolio is a website where users can view and buy stocks \(no actual sto
 This website works best when using a current version of Firefox or Chrome.
 
 ## Usage
+
+When you visit the site you can view news articles and the highest gaining and lowest dropping stocks.
 <!-- ![homepage](./public/images/screenshot1.jpg)
 
 When you visit the site you can click on the "read more" button to view the pets that are available for adoption.
