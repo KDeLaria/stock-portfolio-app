@@ -22,7 +22,7 @@ const HomePage = () => {
   return (
     <div className="">
       <Header />
-      <div className="bg-white rounded shadow-md">
+      <div className="bg-white">
         <h2 className="text-2xl font-semibold mb-4">Investor Page</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <NewsArticle />
