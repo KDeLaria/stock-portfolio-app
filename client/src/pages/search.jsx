@@ -4,7 +4,6 @@ import Search from '../components/search/search';
 // import ListPortfolio from '../components/search/ListPortfolio';
 import Header from '../components/home/header'
 import Footer from '../components/home/footer'
-import Header from "../components/home/header";
 
 const SearchStocks = () => {
 
