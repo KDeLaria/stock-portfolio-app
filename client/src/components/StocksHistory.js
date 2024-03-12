@@ -9,10 +9,10 @@ class StocksHistory {
       return dataSources;
   }
 
-  // gets IBM stock OHLC prices from a JSON string
+  // gets stock OHLC prices from a JSON string
   static async getStock(symbol) {
         document.querySelector('#loading-overlay').classList.remove('hidden');
-        let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=VZSLTKGWGJ5MX39M`;
+        let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=Z4BJOOT987MHX8OW`;
         let response = await fetch(url);
         let jsonData = await response.json();
         console.log(jsonData);

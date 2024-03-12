@@ -21,6 +21,7 @@ const Trending = ({ onButtonClick }) => {
         {topGainers.map((stock, index) => (
           <div
             key={index}
+            id={`gainer${index}`}
             className="flex flex-col items-center justify-center border p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" 
             onClick={handleClick}
           >
