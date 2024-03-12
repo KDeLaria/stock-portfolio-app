@@ -1,11 +1,13 @@
 // import React from "react";
 import React, { useState, useEffect } from "react";
 
-function SearchPage() {
+export default function Search(props) {
 
    const [search, setSearch] = useState('');
-   const [stocks, setStocks] = useState([]);
+   // const [stocks, setStocks] = useState([]);
 
+
+   //  This is called when the form is submitted
    async function handleSearch(e) {
       e.preventDefault();
       try {
@@ -21,8 +23,7 @@ function SearchPage() {
 
          if (result.status === "Success") {
             // console.log("foundStocks is " + foundStocks)
-            setStocks(result.payload)
-            console.log("stocks is " + stocks);
+            props.setStocks(result.payload)
          }
       } catch (err) {
          console.log("Error message " + err.message)
@@ -30,8 +31,8 @@ function SearchPage() {
    };
 
    useEffect(() => {
-      console.log("stocks is " + JSON.stringify(stocks));
-   }, [stocks])
+      console.log("component: stocks is " + JSON.stringify(props.stocks));
+   }, [props.stocks])
 
 
 
@@ -58,4 +59,4 @@ function SearchPage() {
 }
 
 
-export default SearchPage;
+// export default SearchPage;

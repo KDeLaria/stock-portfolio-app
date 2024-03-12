@@ -4,6 +4,9 @@ import Search from '../components/search/search';
 import ListPortfolio from '../components/search/ListPortfolio';
 import Header from '../components/home/header'
 import Footer from '../components/home/footer'
+import Purchase from '../components/search/Purchase'
+import {useAuth} from "../../src/utils/Auth";
+const {user_id}  = useAuth();
 
 const SearchStocks = () => {
 
@@ -21,47 +24,45 @@ const SearchStocks = () => {
          const result = await query.json()
          if (result.status === "success") {
             // Keep just the ticker and shares_owned attributes
-            
+
             setPortfolio(result.payload)
+            console.log("User is :" + user_id)
+
          }
       } catch (err) {
          console.log(err.message)
       }
    }
 
-   // // Whenever the page is rendered, show all the stocks has in their portfolio
-   // useEffect(() => {
-   //    getPortfolio()
-   // }, [])
+   // // Whenever the page is rendered, show all the stocks in their portfolio
+   useEffect(() => {
+      //    getPortfolio()
+      console.log("pages: stocks is " + stocks)
+   }, [stocks])
 
    return (
       <>
          <div className="container">
             <Header />
-            <Search />
+            <Search stocks={stocks} setStocks={setStocks} />
             <Footer />
          </div>
 
-{/* 
-         <div className="container">
-            <div className="row">
-               <div className="col-6">
-                  {isLoggedIn === true ? (
-                     <AddNote getNotes={getNotes} />
-                  ) : (
-                     <p>You must be logged in to add notes!</p>
-                  )}
-               </div>
 
-               <div className="col-6">
-                  {isLoggedIn === true ? (
-                     <ListPortfolio portfolio={portfolio} />
-                  ) : (
-                     <p>You must be logged in to view notes!</p>
-                  )}
+
+         {
+            <div className="container">
+               <div className="row">
+                  <div className="col-6">
+                     <Purchase stocks={stocks} />
+                  </div>
+                  <div className="col-6">
+                     <p>More filler</p>
+                     {/* <ListPortfolio portfolio={portfolio} /> */}
+                  </div>
                </div>
             </div>
-         </div> */}
+         }
 
 
 
