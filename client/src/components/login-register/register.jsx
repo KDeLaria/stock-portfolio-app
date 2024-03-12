@@ -11,8 +11,7 @@ function Register() {
   const [nameWarning, setNameWarning] = useState("");
   const [passwordWarning, setPasswordWarning] = useState("");
   const [unusedUsername, setUnusedUsername] = useState(true);
-  const auth = useAuth();
-  const {setName, setUser_id} = auth;
+  const {setName, setUser_id} = useAuth();
 
   function clearWarnings() {
     setRegisterMessage("");
@@ -65,15 +64,15 @@ function Register() {
 
             if (results?.status !== "error") {
               clearForm();
-              setName(results._doc.name);
-              setUser_id(results._doc._id);
+              setName(results.name);
+              setUser_id(results._id);
             }
             else {
               throw new Error(results.message);
             }
           }
           catch (err) {
-            console.log(err.mesage)
+            console.log(err.mesage);
             setRegisterMessage("Sorry, we are unable to register your account.");
           }
         }
@@ -86,7 +85,7 @@ function Register() {
       }
     }
     else {
-      if (name === "") {
+      if (regName === "") {
         setNameWarning("Name is required.");
       }
       if (regUsername === "") {
@@ -104,7 +103,7 @@ function Register() {
         <h3 className="text-2xl font-bold text-center">Create an account</h3>
         <form onSubmit={handleSubmit}>
           <div className="mt-4">
-            <label htmlFor="name" className="block">Name</label>
+            <label htmlFor="regName" className="block">Name</label>
             <input
               type="text"
               placeholder="Name"
