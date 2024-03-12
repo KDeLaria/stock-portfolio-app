@@ -1,7 +1,7 @@
 // import React from 'react';
 import React, { useState, useEffect } from "react";
 import Search from '../components/search/search';
-import ListPortfolio from '../components/search/ListPortfolio';
+// import ListPortfolio from '../components/search/ListPortfolio';
 import Header from '../components/home/header'
 import Footer from '../components/home/footer'
 import Purchase from '../components/search/Purchase'

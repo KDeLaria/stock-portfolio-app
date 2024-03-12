@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Trendline from "../components/home/Trendline";
 import TrendlineHelper from "../components/portfolio/TrendlineHelper";
+import Header from "../components/home/header";
 
 function Portfolio() {
   const portfolioArr = ["TSLA", "AAPL", "F", "AMD", "MSFT", "WBD", "HPE", "T", "GOOG", "CMCSA", "PYPL"];
@@ -16,6 +17,7 @@ function Portfolio() {
 
   return (
     <>
+    <Header />
       <div className="flex">
         <div className="flex-initial w-2/3">
           <Trendline {...trendlineProps} />
