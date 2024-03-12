@@ -31,6 +31,7 @@ export default function Purchase(props) {
          if (data.status === "Success") {
             // Update the portfolio state if needed or show a success message
             alert("Purchase successful!");
+            props.getPortfolio()
          } else {
             // Handle any errors or unsuccessful purchase attempts
             alert("Purchase failed: " + data.message);

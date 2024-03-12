@@ -53,7 +53,7 @@ const SearchStocks = () => {
             <div className="container">
                <div className="row">
                   <div className="col-6">
-                     <Purchase stocks={stocks} user_id={user_id} />
+                     <Purchase stocks={stocks} user_id={user_id} getPortfolio={getPortfolio}/>
                   </div>
                   <div className="col-6">
                      <ListPortfolio portfolio={portfolio} />
