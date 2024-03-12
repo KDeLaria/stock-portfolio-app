@@ -54,7 +54,7 @@ router.delete("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const payload = await createUser(req.body);
-        const token = setToken(payload._id);
+        const token = setToken(payload._id, payload.name);
         res.status(200).cookie("auth_cookie", token).json(payload);
     } catch (err) {
         res.status(500).json({ status: "error", message: err.message });
