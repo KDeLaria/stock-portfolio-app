@@ -13,4 +13,4 @@ async function updateUserStock (id, data) {
    }
 }
 
-module.exports = { UserStocks };
+module.exports = { updateUserStock };

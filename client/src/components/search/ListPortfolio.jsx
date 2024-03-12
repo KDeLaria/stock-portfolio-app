@@ -1,5 +1,8 @@
 export default function ListPortfolio(props) {
 
+console.log("In ListPortfolio component. props.portfolio is : " + JSON.stringify(props.portfolio))
+
+
    if (!props.portfolio.length) return (<p>Nothing in your portfolio yet!</p>)
    return (
       <>
@@ -18,7 +21,7 @@ export default function ListPortfolio(props) {
                         {stocks.ticker}
                      </td>
                      <td>
-                        {sticker.shares_owned}
+                        {stocks.shares_owned}
                      </td>
                   </tr>
                ))}
