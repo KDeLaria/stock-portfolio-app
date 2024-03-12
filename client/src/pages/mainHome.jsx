@@ -9,7 +9,7 @@ import { useAuth } from "../utils/Auth";
 
 const HomePage = () => {
   const { loggedIn, user_id } = useAuth();
-  const stockOfTheDay = document.querySelector('#gainer1').querySelector('span').innerText;
+  let stockOfTheDay;
   const [portfolioArr, setPortfolioArr] = useState([]);
   const [trendlineProps, setTrendlineProps] = useState({ portfolioArr });
   const url = `/api/user/${user_id}`
@@ -35,13 +35,14 @@ const HomePage = () => {
   function getStockOfTheDay(symbol) {
     if (!loggedIn) {
       setTrendlineProps({ symbol });
-    } else {
+    } else if (loggedIn) {
       setTrendlineProps({ portfolioArr });
     }
   }
 
   useEffect(() => {
     getPortfolio();
+    stockOfTheDay = document.querySelector('#gainer1').querySelector('span').innerText;
     getStockOfTheDay(stockOfTheDay);
   }, []);
 
