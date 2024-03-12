@@ -1,0 +1,59 @@
+
+.article {
+    position: relative;
+    margin: 1rem 0.75rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .article:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .articleImage {
+    border-radius: 0.5rem;
+    width: 100%;
+  }
+  
+  .overlayContainer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.75);
+    padding: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .overlayContainer:hover {
+    transform: scale(1.05);
+  }
+  
+  .articleTitle {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .articleSummary {
+    font-size: 0.875rem;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .readMoreLink {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .readMoreLink:hover {
+    color: #0056b3;
+  }
