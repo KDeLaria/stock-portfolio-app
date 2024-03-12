@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import fallbackData from "../../seeds/top-gainers-losers-seed.json";
 
+
 const Trending = ({ onButtonClick }) => {
   const [topGainers, setTopGainers] = useState([]);
   const [topLosers, setTopLosers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiKey = process.env.API_KEY //"YOUR_API_KEY";
+      const apiKey = process.env.API_KEY
       const url = `https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=${apiKey}`;
 
       try {
