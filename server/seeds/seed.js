@@ -10,7 +10,7 @@ conn.once('open', async () => {
    // Deletes old stocks if present
    let stocksCheck = await conn.db.listCollections({ name: 'stocks' }).toArray();
    if (stocksCheck.length) {
-      await connection.dropCollection('stocks');
+      await conn.dropCollection('stocks');
    }
 
    console.log("I am getting ready to load the stock data.")
