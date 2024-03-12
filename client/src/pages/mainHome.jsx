@@ -5,6 +5,7 @@ import Trendline from '../components/home/Trendline';
 import Portfolio from '../components/home/portfolio';
 import Trending from '../components/home/trending';
 import Footer from '../components/home/footer';
+import { useAuth } from "../utils/Auth";
 
 
 const HomePage = () => {
