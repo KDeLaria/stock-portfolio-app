@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const payload = await getUser(req.params.id);
-        res.status(200).json(payload);
+        res.status(200).json({status: "success", payload});
     } catch (err) {
         console.log(err.message);
         res.status(500).json({ status: "error", message: err.message });
