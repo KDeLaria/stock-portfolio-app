@@ -34,8 +34,8 @@ body::before {
   background-size: cover;
   background-position: center;
   filter: blur(4px);
-  background-attachment: fixed; /* This line makes the background fixed */
-  z-index: -1; /* Ensure the image stays behind the content */
+  background-attachment: fixed;
+  z-index: -1;
 }
 
 /* a {
@@ -68,6 +68,7 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+/*  */
 
 .hidden {
   display: none!important;
@@ -84,4 +85,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-} */
+}

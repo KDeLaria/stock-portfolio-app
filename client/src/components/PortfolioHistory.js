@@ -8,7 +8,7 @@ class PortfolioHistory {
     }
 
     static async getStock(symbol) {
-        const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=UMSPYAT6N4ETOBFD`;
+        const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=VZSLTKGWGJ5MX39M`;
         const response = await fetch(url);
         const jsonData = await response.json();
         console.log(jsonData);
