@@ -20,7 +20,6 @@ async function getAllStocks() {
 // }
 
 async function getSearchStock(regex) {
-   console.log("I am in the stock controller")
    try {
       // MongoDB's $regex operator matches substrings within the field value by default. Do not use %regex%.
       const regexPattern = new RegExp(`${regex}`, 'i');

@@ -15,7 +15,6 @@ export default function Purchase(props) {
       try {
          // Assuming you have the user's ID stored in a state or context
          const userId = props.user_id; // Replace this with actual user ID retrieval logic
-         console.log("userId is " + userId)
          const response = await fetch(`/api/userStock/${userId}`, {
             method: 'PUT',
             headers: {
@@ -26,8 +25,7 @@ export default function Purchase(props) {
                shares_owned: parseInt(quantity),
             })
          });
-         console.log("Attempted fetch PUT in purchase.jsx")
-         const data = await response.json();
+          const data = await response.json();
          if (data.status === "Success") {
             // Update the portfolio state if needed or show a success message
             alert("Purchase successful!");
@@ -37,7 +35,6 @@ export default function Purchase(props) {
             alert("Purchase failed: " + data.message);
          }
       } catch (error) {
-         console.error("Purchase error:", error);
          alert("An error occurred while making the purchase.");
       }
    };
