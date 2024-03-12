@@ -11,13 +11,17 @@ const HomePage = () => {
   const { user_id } = useAuth();
   const [portfolioArr, setPortfolioArr] = useState([]);
   const [trendlineProps, setTrendlineProps] = useState({ portfolioArr });
+  const url = `/api/user/${user_id}`
 
   async function getPortfolio() {
     try {
-      const query = await fetch(`/api/user/${user_id}`);
+      const query = await fetch(url);
+      console.log(query);
       const result = await query.json();
       if (result.status === "success") {
+        console.log("Status is OK")
         const tickers = result.payload.portfolio.map(stock => stock.ticker);
+        console.log(tickers);
         setPortfolioArr(tickers);
         setTrendlineProps({ portfolioArr: tickers });
       }
