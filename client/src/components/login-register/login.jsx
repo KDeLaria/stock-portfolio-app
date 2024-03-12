@@ -42,6 +42,7 @@ function LoginPage() {
           clearForm();
           setName(result._doc.name);
           setUser_id(result._doc._id);
+          window.location.href = "/";
         }
       }
       catch (err) {
