@@ -25,7 +25,8 @@ async function getSearchStock(regex) {
       // MongoDB's $regex operator matches substrings within the field value by default. Do not use %regex%.
       const regexPattern = new RegExp(`${regex}`, 'i');
       console.log("Looking for " + regexPattern)
-      return await Stocks.find({ company_name: { $regex: regexPattern } });
+      // Limit the number of records returned to 10
+      return await Stocks.find({ company_name: { $regex: regexPattern}}).limit(10);
    }
    catch (er) {
       throw new Error(er.message);
