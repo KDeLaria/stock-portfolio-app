@@ -42,8 +42,8 @@ function Portfolio() {
   return (
     <>
     <Header />
-      <div className="flex">
-        <div className="flex-initial w-2/3">
+      <div className="flex flex-col md:flex-row">
+        <div className="w-full md:flex-initial md:w-2/3">
           <Trendline {...trendlineProps} />
         </div>
         <div className="flex-initial w-1/3">
