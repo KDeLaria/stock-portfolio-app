@@ -8,7 +8,7 @@ const Portfolio = () => {
       {loggedIn ? (
         <>
           <p className="font-semibold mb-4">Your portfolio trendline</p>
-          {/* Replace with an actual graph component */}
+          {/* Replace with graph component */}
           <div className="h-40 bg-gray-200 rounded-lg mb-4"></div>
           <button className="py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-700 transition-colors duration-300">
             View Breakdown

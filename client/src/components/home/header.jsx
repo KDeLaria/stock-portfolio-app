@@ -3,21 +3,21 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../utils/Auth";
 
 const Header = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
   const { loggedIn, logout, name } = useAuth();
 
-  // Function to handle login button click
+
   const handleLoginClick = () => {
     if (loggedIn) {
       logout();
     } else {
-      navigate("/login"); // Navigate to the login page
+      navigate("/login"); 
     }
   };
 
-  // Function to navigate back home when WOLF.IO is clicked
+  // go back home when WOLF.IO is clicked
   const navigateHome = () => {
-    navigate("/"); // Navigate to the home page
+    navigate("/"); 
   };
 
   return (
