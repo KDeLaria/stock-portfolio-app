@@ -24,11 +24,8 @@ const SearchStocks = () => {
          const query = await fetch(`/api/user/${user_id}`)
          // This will return all fields, but we want just ticker and shares_owned
          const result = await query.json()
-         console.log("getPortfolio returns " + JSON.stringify(result));
          if (result.status === "success") {
             // Keep just the ticker and shares_owned attributes
-            console.log("getPortfolio ran succesfully")
-            console.log("result.payload.portfolio" + JSON.stringify(result.payload.portfolio))
             setPortfolio(result.payload.portfolio)
          }
       } catch (err) {
@@ -39,9 +36,6 @@ const SearchStocks = () => {
    // // Whenever the page is rendered, show all the stocks in their portfolio
    useEffect(() => {
       getPortfolio()
-      console.log("pages: stocks is " + stocks)
-      console.log("User is :" + user_id)
-      console.log("portfolio is " + portfolio)
    }, [stocks])
 
    return (
@@ -51,17 +45,21 @@ const SearchStocks = () => {
             <Search stocks={stocks} setStocks={setStocks} />
 
             <div className="container">
-               <div className="row">
-                  <div className="col-6">
-                     <Purchase stocks={stocks} user_id={user_id} />
+               <div className="row ">
+                  <div className="grid grid-cols-2 gap-4">
+                     <div>
+                        <Purchase stocks={stocks} user_id={user_id} getPortfolio={getPortfolio} />
+                     </div>
+                     <div>
+                        <ListPortfolio portfolio={portfolio} />
+                     </div>
                   </div>
-                  <div className="col-6">
-                     <ListPortfolio portfolio={portfolio} />
-                  </div>
-                  <Footer />
                </div>
             </div>
 
+         </div>
+         <div className="row">
+            <Footer />
          </div>
       </>
    )
