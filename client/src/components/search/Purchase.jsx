@@ -22,13 +22,13 @@ export default function Purchase(props) {
                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-               stockId: stockId,
-               quantity: quantity,
+               ticker: stockId,
+               shares_owned: parseInt(quantity),
             })
          });
          console.log("Attempted fetch PUT in purchase.jsx")
          const data = await response.json();
-         if (data.status === "success") {
+         if (data.status === "Success") {
             // Update the portfolio state if needed or show a success message
             alert("Purchase successful!");
          } else {
