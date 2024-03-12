@@ -8,10 +8,12 @@ import Footer from '../components/home/footer';
 import { useAuth } from "../utils/Auth";
 
 const HomePage = () => {
-  const { user_id } = useAuth();
+  const { loggedIn, user_id } = useAuth();
+  const stockOfTheDay = document.querySelector('#gainer1').querySelector('span').innerText;
   const [portfolioArr, setPortfolioArr] = useState([]);
   const [trendlineProps, setTrendlineProps] = useState({ portfolioArr });
   const url = `/api/user/${user_id}`
+
 
   async function getPortfolio() {
     try {
@@ -30,8 +32,17 @@ const HomePage = () => {
     }
   }
 
+  function getStockOfTheDay(symbol) {
+    if (!loggedIn) {
+      setTrendlineProps({ symbol });
+    } else {
+      setTrendlineProps({ portfolioArr });
+    }
+  }
+
   useEffect(() => {
     getPortfolio();
+    getStockOfTheDay(stockOfTheDay);
   }, []);
 
   const handleButtonClick = (symbol) => {
@@ -42,6 +53,8 @@ const HomePage = () => {
     }
   };
 
+
+
   return (
     <div className="">
       <Header />
@@ -49,7 +62,6 @@ const HomePage = () => {
         <h2 className="text-2xl font-semibold mb-4">Investor Page</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <NewsArticle />
-          {/* ... other sections like NewsImage/Link ... */}
         </div>
         <div className="grid md:grid-cols-2 gap-10 mb-4 m-2">
           <Trendline {...trendlineProps} />
