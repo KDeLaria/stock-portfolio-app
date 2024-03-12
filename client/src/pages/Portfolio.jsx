@@ -5,23 +5,27 @@ import Header from "../components/home/header";
 import { useAuth } from "../utils/Auth";
 
 function Portfolio() {
-  let portfolioArr = [];
   const { user_id } = useAuth();
+  const [portfolioArr, setPortfolioArr] = useState([]);
+  const [trendlineProps, setTrendlineProps] = useState({ portfolioArr });
 
   async function getPortfolio() {
     try {
-      const query = await fetch(`/api/user/${user_id}`)
-      const result = await query.json()
+      const query = await fetch(`/api/user/${user_id}`);
+      const result = await query.json();
       if (result.status === "success") {
-        portfolioArr = result.payload.portfolio.map(stock => stock.ticker);
+        const tickers = result.payload.portfolio.map(stock => stock.ticker);
+        setPortfolioArr(tickers);
+        setTrendlineProps({ portfolioArr: tickers });
       }
     } catch (err) {
-      console.log(err.message)
+      console.log(err.message);
     }
   }
 
-  // const portfolioArr = ["TSLA", "AAPL", "F", "AMD", "MSFT", "WBD", "HPE", "T", "GOOG", "CMCSA", "PYPL"];
-  const [trendlineProps, setTrendlineProps] = useState({ portfolioArr });
+  useEffect(() => {
+    getPortfolio();
+  }, []);
 
   const handleButtonClick = (symbol) => {
     if (symbol === "Portfolio") {
