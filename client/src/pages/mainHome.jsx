@@ -42,7 +42,7 @@ const HomePage = () => {
 
   useEffect(() => {
     getPortfolio();
-    stockOfTheDay = document.querySelector('#gainer1').querySelector('span').innerText;
+    stockOfTheDay = document.querySelector('#gainer0').querySelector('span').innerText;
     getStockOfTheDay(stockOfTheDay);
   }, []);
 
@@ -66,7 +66,7 @@ const HomePage = () => {
         </div>
         <div className="grid md:grid-cols-2 gap-10 mb-4 m-2">
           <Trendline {...trendlineProps} />
-          <Portfolio />
+          <Portfolio {...trendlineProps} />
           
         </div>
         <Trending onButtonClick={handleButtonClick} />
