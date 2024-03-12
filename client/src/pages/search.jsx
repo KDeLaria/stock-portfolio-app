@@ -5,10 +5,12 @@ import Search from '../components/search/search';
 import Header from '../components/home/header'
 import Footer from '../components/home/footer'
 import Purchase from '../components/search/Purchase'
-import {useAuth} from "../../src/utils/Auth";
-const {user_id}  = useAuth();
+import { useAuth } from "../../src/utils/Auth";
+
 
 const SearchStocks = () => {
+
+   const { user_id } = useAuth();
 
    // This is for what stocks the user owns.  Displays on right side of screen.
    const [portfolio, setPortfolio] = useState([]);
@@ -26,7 +28,7 @@ const SearchStocks = () => {
             // Keep just the ticker and shares_owned attributes
 
             setPortfolio(result.payload)
-            console.log("User is :" + user_id)
+
 
          }
       } catch (err) {
@@ -38,6 +40,7 @@ const SearchStocks = () => {
    useEffect(() => {
       //    getPortfolio()
       console.log("pages: stocks is " + stocks)
+      console.log("User is :" + user_id)
    }, [stocks])
 
    return (
@@ -45,7 +48,7 @@ const SearchStocks = () => {
          <div className="container">
             <Header />
             <Search stocks={stocks} setStocks={setStocks} />
-            <Footer />
+           
          </div>
 
 
@@ -60,6 +63,7 @@ const SearchStocks = () => {
                      <p>More filler</p>
                      {/* <ListPortfolio portfolio={portfolio} /> */}
                   </div>
+                   <Footer />
                </div>
             </div>
          }

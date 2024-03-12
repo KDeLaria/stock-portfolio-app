@@ -4,8 +4,6 @@ import React, { useState, useEffect } from "react";
 export default function Search(props) {
 
    const [search, setSearch] = useState('');
-   // const [stocks, setStocks] = useState([]);
-
 
    //  This is called when the form is submitted
    async function handleSearch(e) {
