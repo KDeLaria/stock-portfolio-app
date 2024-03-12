@@ -1,5 +1,6 @@
 import {createContext, useContext, useState, useEffect} from "react"
 import Cookie from "js-cookie";
+import {jwtDecode} from "jwt-decode"
 
 const AuthContext = createContext({
   loggedIn: false,
@@ -20,7 +21,12 @@ export const AuthProvider = function(props) {
     
     function checkUser () {
         const cookie = Cookie.get("auth_cookie");
-        setLoggedIn( (cookie && user_id) ? true : false );
+        if (cookie) {
+          const decodedToken = jwtDecode(cookie);
+          setUser_id(decodedToken.id);
+          setName(decodedToken.name);
+        }
+        setLoggedIn( (cookie) ? true : false );
     }
 
     async function logout() {
@@ -31,6 +37,7 @@ export const AuthProvider = function(props) {
         });
         const result = await results.json();
         if( result.status === "success" ) {
+          localStorage.clear();
           setLoggedIn(false);
           setName("");
           setUser_id("")

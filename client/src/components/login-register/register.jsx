@@ -72,7 +72,6 @@ function Register() {
             }
           }
           catch (err) {
-            console.log(err.mesage);
             setRegisterMessage("Sorry, we are unable to register your account.");
           }
         }
@@ -108,7 +107,7 @@ function Register() {
               type="text"
               placeholder="Name"
               id="regName"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
               value={regName}
               onChange={(e) => { setRegName(e.target.value); clearWarnings();}}
             />
@@ -119,7 +118,7 @@ function Register() {
               type="text"
               placeholder="Username"
               id="regUsername"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
               value={regUsername}
               onChange={(e) => { setRegUsername(e.target.value); clearWarnings();}} onBlur={checkUser}
             />
@@ -130,7 +129,7 @@ function Register() {
               type="password"
               placeholder="Password"
               id="password"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
               value={password}
               onChange={(e) => { setPassword(e.target.value); clearWarnings(); }}
             />
@@ -141,7 +140,7 @@ function Register() {
               type="password"
               placeholder="Confirm Password"
               id="confirmPassword"
-              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-slate-200"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
               value={confirmPassword}
               onChange={(e) => { setConfirmPassword(e.target.value); clearWarnings(); }}
             />
