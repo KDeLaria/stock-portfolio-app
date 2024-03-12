@@ -11,13 +11,16 @@ This website works best when using a current version of Firefox or Chrome.
 
 ## Usage
 
-When you visit the site you can view news articles and the highest gaining and lowest dropping stocks. To login or register click on the login button in the upper right corner. Once logged in you can view search for and purchase a stock for your portfolio on the search page.  You can also visit the portfolio page to view a grah with your portfolio stocks.
+When you visit the site you can view news articles and the highest gaining and lowest dropping stocks. To login or register click on the login button in the upper right corner. Once logged in you can view search for and purchase a stock for your portfolio on the search page.  You can also visit the portfolio page to view a graph with your portfolio stocks.
 <!-- ![homepage](./public/images/screenshot1.jpg)
 
-When you visit the site you can click on the "read more" button to view the pets that are available for adoption.
+When you visit the site you can click on the "read more" button to view the pets that are available for adoption. -->
  
-![search page](./public/images/screenshot2.png)
+![login page](./server/screenshots4readme/screenshot2.png)
 
+<!--
+![search page](./public/images/screenshot2.png)
+ 
 ![portfolio page](./public/images/screenshot3.jpg)
 
 When you click the "Sign Up" a signup page will appear and you will be able to enter your email and password. Once you have entered your information you can  click on the "Sign Up button to register your account.  You will be prompted with a few questions about your pet preferences.  -->

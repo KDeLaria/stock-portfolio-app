@@ -4,6 +4,49 @@
   "relevance_score_definition": "0 < x <= 1, with a higher score indicating higher relevance.",
   "feed": [
     {
+      "title": "Stephanie Link Is Buying Apple Stock At 'Bargain' Prices: Here's What You Might Be Missing - Apple  ( NASDAQ:AAPL ) ",
+      "url": "https://www.benzinga.com/trading-ideas/long-ideas/24/03/37632714/stephanie-link-is-buying-apple-stock-at-bargain-prices-heres-what-you-might-be-missing",
+      "time_published": "20240312T193803",
+      "authors": [
+        "Adam Eckert"
+      ],
+      "summary": "Hightower Advisors' Stephanie Link has increased her Apple Inc AAPL stake, with the stock sitting in the bargain bin. What To Know: Tuesday on CNBC's \"Fast Money Halftime Report,\" Link argued that Apple stock may be set up to outperform this quarter given the current sentiment surrounding the ...",
+      "banner_image": "https://cdn.benzinga.com/files/images/story/2024/Apple-Shutterstock_5.jpeg?width=1200&height=800&fit=crop",
+      "source": "Benzinga",
+      "category_within_source": "Trading",
+      "source_domain": "www.benzinga.com",
+      "topics": [
+        {
+          "topic": "Earnings",
+          "relevance_score": "0.938793"
+        },
+        {
+          "topic": "Technology",
+          "relevance_score": "1.0"
+        },
+        {
+          "topic": "Financial Markets",
+          "relevance_score": "0.413559"
+        }
+      ],
+      "overall_sentiment_score": 0.127251,
+      "overall_sentiment_label": "Neutral",
+      "ticker_sentiment": [
+        {
+          "ticker": "XIACY",
+          "relevance_score": "0.100308",
+          "ticker_sentiment_score": "-0.120289",
+          "ticker_sentiment_label": "Neutral"
+        },
+        {
+          "ticker": "AAPL",
+          "relevance_score": "0.834422",
+          "ticker_sentiment_score": "0.258155",
+          "ticker_sentiment_label": "Somewhat-Bullish"
+        }
+      ]
+    },
+    {
       "title": "Apple's Winning Strategy - Analyst Highlights How Pricing and Services Fuel Market Growth - Apple  ( NASDAQ:AAPL ) ",
       "url": "https://www.benzinga.com/news/24/03/37631605/apples-winning-strategy-analyst-highlights-how-pricing-and-services-fuel-market-growth",
       "time_published": "20240312T185230",
@@ -3124,109 +3167,6 @@
           "ticker": "AAPL",
           "relevance_score": "0.742397",
           "ticker_sentiment_score": "-0.007806",
-          "ticker_sentiment_label": "Neutral"
-        }
-      ]
-    },
-    {
-      "title": "6 Dividend Stocks Make Up 78.4% of Warren Buffett's $370 Billion Portfolio, and They Are All Cheaper Than the S&P 500",
-      "url": "https://www.fool.com/investing/2024/03/10/dividend-stocks-majority-warren-buffett-berkshire/",
-      "time_published": "20240310T110000",
-      "authors": [
-        "Daniel Foelber"
-      ],
-      "summary": "Berkshire Hathaway's top stock holdings are all good values right now.",
-      "banner_image": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F767904%2Fgetty-surprised-happy-amazed-1201x763-f21be87.jpg&op=resize&w=700",
-      "source": "Motley Fool",
-      "category_within_source": "n/a",
-      "source_domain": "www.fool.com",
-      "topics": [
-        {
-          "topic": "Financial Markets",
-          "relevance_score": "0.99977"
-        },
-        {
-          "topic": "Manufacturing",
-          "relevance_score": "0.25"
-        },
-        {
-          "topic": "Earnings",
-          "relevance_score": "0.158519"
-        },
-        {
-          "topic": "Energy & Transportation",
-          "relevance_score": "0.25"
-        },
-        {
-          "topic": "Technology",
-          "relevance_score": "0.25"
-        },
-        {
-          "topic": "Finance",
-          "relevance_score": "0.25"
-        }
-      ],
-      "overall_sentiment_score": 0.252404,
-      "overall_sentiment_label": "Somewhat-Bullish",
-      "ticker_sentiment": [
-        {
-          "ticker": "OXY",
-          "relevance_score": "0.156461",
-          "ticker_sentiment_score": "0.145895",
-          "ticker_sentiment_label": "Neutral"
-        },
-        {
-          "ticker": "AAPL",
-          "relevance_score": "0.378285",
-          "ticker_sentiment_score": "0.14134",
-          "ticker_sentiment_label": "Neutral"
-        },
-        {
-          "ticker": "BAC",
-          "relevance_score": "0.156461",
-          "ticker_sentiment_score": "0.16947",
-          "ticker_sentiment_label": "Somewhat-Bullish"
-        },
-        {
-          "ticker": "CVX",
-          "relevance_score": "0.23281",
-          "ticker_sentiment_score": "0.149661",
-          "ticker_sentiment_label": "Neutral"
-        },
-        {
-          "ticker": "KO",
-          "relevance_score": "0.156461",
-          "ticker_sentiment_score": "0.117734",
-          "ticker_sentiment_label": "Neutral"
-        },
-        {
-          "ticker": "MA",
-          "relevance_score": "0.039353",
-          "ticker_sentiment_score": "0.301784",
-          "ticker_sentiment_label": "Somewhat-Bullish"
-        },
-        {
-          "ticker": "BRK-A",
-          "relevance_score": "0.039353",
-          "ticker_sentiment_score": "0.050287",
-          "ticker_sentiment_label": "Neutral"
-        },
-        {
-          "ticker": "XOM",
-          "relevance_score": "0.039353",
-          "ticker_sentiment_score": "0.124298",
-          "ticker_sentiment_label": "Neutral"
-        },
-        {
-          "ticker": "AXP",
-          "relevance_score": "0.156461",
-          "ticker_sentiment_score": "0.217786",
-          "ticker_sentiment_label": "Somewhat-Bullish"
-        },
-        {
-          "ticker": "WLDS",
-          "relevance_score": "0.039353",
-          "ticker_sentiment_score": "0.142056",
           "ticker_sentiment_label": "Neutral"
         }
       ]

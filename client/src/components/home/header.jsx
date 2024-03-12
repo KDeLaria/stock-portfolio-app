@@ -47,12 +47,12 @@ const Header = () => {
       </div>
       <div className="mt-2 md:mt-0">
         {loggedIn && <span className="mr-2 md:mr-4">Welcome {name},</span>}
-        <button
+        {window.location.pathname !== "/login" &&(<button
           className="py-2 px-3 md:py-3 md:px-6 text-sm md:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-800 transition-colors duration-300"
           onClick={handleLoginClick}
         >
           {loggedIn ? "Logout" : "Login"}
-        </button>
+        </button>)}
       </div>
     </header>
   );
