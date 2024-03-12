@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Trendline from "../components/home/Trendline";
 import TrendlineHelper from "../components/portfolio/TrendlineHelper";
 import Header from "../components/home/header";
+import { useAuth } from "../utils/Auth";
 
 function Portfolio() {
   let portfolioArr = [];
