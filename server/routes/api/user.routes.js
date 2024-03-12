@@ -1,12 +1,14 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
+//
 require("dotenv").config();
 
 const { getAllUsers, createUser, deleteUser, getUser,
     updateUser, loginHandler, findUser } = require("../../controllers/user.controller");
+//const withAuth = require("../../utils/auth");
 
-function setToken (id) {
-    return jwt.sign({ id: id }, process.env.JWT_SECRET);
+function setToken (id, name) {
+    return jwt.sign({ id: id, name: name }, process.env.JWT_SECRET);
 };
 
 router.get("/", async (req, res) => {
@@ -72,7 +74,8 @@ router.post("/logout", async(req, res) => {
   router.post("/login", async(req, res) => {
     try {
       const payload = await loginHandler(req.body.username, req.body.password);
-      const token = setToken(payload?._id);
+      const token = setToken(payload._doc._id, payload._doc.name);
+      console.log(payload)
       res.status(200).cookie("auth_cookie", token).json(payload);
     }catch(err){
       console.log(err.message);
