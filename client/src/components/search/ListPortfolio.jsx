@@ -1,6 +1,6 @@
 export default function ListPortfolio(props) {
 
-console.log("In ListPortfolio component. props.portfolio is : " + JSON.stringify(props.portfolio))
+// console.log("In ListPortfolio component. props.portfolio is : " + JSON.stringify(props.portfolio))
 
 
    if (!props.portfolio.length) return (<p>Nothing in your portfolio yet!</p>)
