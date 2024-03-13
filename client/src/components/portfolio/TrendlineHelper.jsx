@@ -7,15 +7,15 @@ class TrendlineHelper extends React.Component {
     };
 
     const buttons = this.props.portfolioArr.map((item) => (
-      <button key={item} type="button" className="btn btn-primary" onClick={handleClick}>
+      <button key={item} type="button" className="btn btn-primary text-sm sm:text-base md:text-lg p-2 m-1" onClick={handleClick}>
         {item}
       </button>
     ));
 
     return (
       <>
-        <div className="grid grid-rows overflow-y-auto h-[50vh]">
-          <button type="button" className="btn btn-primary" onClick={handleClick}>Portfolio</button>
+        <div className="grid grid-rows overflow-y-auto min-h-[20vh] max-h-[60vh]">
+          <button type="button" className="btn btn-primary text-sm sm:text-base md:text-lg p-2 m-1" onClick={handleClick}>Portfolio</button>
           {buttons}
         </div>
       </>
