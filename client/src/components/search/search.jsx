@@ -32,23 +32,24 @@ export default function Search(props) {
       console.log("component: stocks is " + JSON.stringify(props.stocks));
    }, [props.stocks])
 
-
-
    return (
       <>
          <form onSubmit={handleSearch}>
             <div className="mt-4">
-               <label htmlFor="findStocks" className="block">Search for stock by name or ticker</label>
+               <label htmlFor="findStocks" className="block">Search for stocks by company name</label>
                <input
                   type="text"
                   placeholder="Company Name"
                   id="search"
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  className="border border-gray-600 w-1/3 px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                />
             </div>
-            <button type="submit" className="btn btn-primary">Search</button>
+            <br></br>
+            <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Search</button>
+            <br></br>
+            <br></br>
 
          </form>
       </>

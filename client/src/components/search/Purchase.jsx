@@ -9,7 +9,7 @@ export default function Purchase(props) {
    // Function to handle the purchase
    const handlePurchase = async (stockId, quantity) => {
       if (quantity <= 0) {
-         alert("Please enter a valid quantity.");
+         console.log("Please enter a valid quantity.");
          return;
       }
       try {
@@ -28,14 +28,14 @@ export default function Purchase(props) {
           const data = await response.json();
          if (data.status === "Success") {
             // Update the portfolio state if needed or show a success message
-            alert("Purchase successful!");
+            console.log("Purchase successful!");
             props.getPortfolio()
          } else {
             // Handle any errors or unsuccessful purchase attempts
-            alert("Purchase failed: " + data.message);
+            console.log("Purchase failed: " + data.message);
          }
       } catch (error) {
-         alert("An error occurred while making the purchase.");
+         console.log("An error occurred while making the purchase.");
       }
    };
 
@@ -45,22 +45,22 @@ export default function Purchase(props) {
          <table>
             <thead>
                <tr>
-                  <th>Ticker</th>
-                  <th>Company Name</th>
-                  <th>Quantity</th>
-                  <th>Action</th>
+                  <th className="pr-4">Ticker</th>
+                  <th className="pr-4">Company Name</th>
+                  <th className="pr-4">Quantity</th>
+                  <th className="pr-4"></th>
                </tr>
             </thead>
             <tbody>
                {props.stocks.map(stock => (
-                  <tr key={stock._id}>
+                  <tr  key={stock._id}>
                      <td>{stock.ticker}</td>
                      <td>{stock.company_name}</td>
                      <td>
-                        <input type="number" min="0" id={`quantity-${stock._id}`} />
+                        <input className="border border-gray-600" type="number" min="0" id={`quantity-${stock._id}`} />
                      </td>
                      <td>
-                        <button onClick={() => handlePurchase(stock.ticker, document.getElementById(`quantity-${stock._id}`).value)}>Buy</button>
+                        <button className="bg-green-500 hover:bg-green-700 text-white font-bold rounded-full h-6 w-12" onClick={() => handlePurchase(stock.ticker, document.getElementById(`quantity-${stock._id}`).value)}>Buy</button>
                      </td>
                   </tr>
                ))}

@@ -3,22 +3,21 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../utils/Auth";
 
 const Header = () => {
-  const navigate = useNavigate(); 
-  const { loggedIn, logout, name } = useAuth();
+   const navigate = useNavigate();
+   let { loggedIn, logout, name } = useAuth();
 
+   const handleLoginClick = () => {
+      if (loggedIn) {
+         logout();
+      } else {
+         navigate("/login");
+      }
+   };
 
-  const handleLoginClick = () => {
-    if (loggedIn) {
-      logout();
-    } else {
-      navigate("/login"); 
-    }
-  };
-
-  // go back home when WOLF.IO is clicked
-  const navigateHome = () => {
-    navigate("/"); 
-  };
+   // go back home when WOLF.IO is clicked
+   const navigateHome = () => {
+      navigate("/");
+   };
 
   return (
     <header className="flex flex-wrap justify-between mb-2 p-2 md:p-4">
@@ -31,7 +30,7 @@ const Header = () => {
                 to="/search"
                 className="py-2 px-3 md:py-3 md:px-6 text-sm md:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-800 transition-colors duration-300"
               >
-                Search
+                Buy and Sell
               </Link>
             </li>
             <li>
