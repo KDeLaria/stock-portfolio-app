@@ -47,7 +47,7 @@ class Trendline extends React.Component {
       console.log("Here comes to state data:")
       let dateOfLastElement;
       if (this.state.data && this.state.data.length > 0) {
-      const lastElement = this.state.data[this.state.data.length - 1];
+      const lastElement = this.state.data[0];
       dateOfLastElement = lastElement.date;
       } else {
         console.log("Ruh roh, Raggy!");
