@@ -66,6 +66,7 @@ function Register() {
               clearForm();
               setName(results.name);
               setUser_id(results._id);
+              window.location.href = "/";
             }
             else {
               throw new Error(results.message);

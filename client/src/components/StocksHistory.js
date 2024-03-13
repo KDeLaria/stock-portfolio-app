@@ -1,7 +1,5 @@
 class StocksHistory {
-  // gets stock OHLC prices for multiple stocks
   static async getMultipleStocks(symbol) {
-      // getting prices of multiples stocks asynchronously
       const dataSources = [
           await this.getStock(symbol),
       ];
@@ -9,15 +7,13 @@ class StocksHistory {
       return dataSources;
   }
 
-  // gets IBM stock OHLC prices from a JSON string
   static async getStock(symbol) {
         document.querySelector('#loading-overlay').classList.remove('hidden');
-        let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=VZSLTKGWGJ5MX39M`;
+        let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=Z4BJOOT987MHX8OW`;
         let response = await fetch(url);
         let jsonData = await response.json();
         console.log(jsonData);
         let stockData = this.convertData(jsonData["Time Series (Daily)"]);
-        // setting data intent for Series Title, e.g., FinancialChart usage
         stockData.__dataIntents = {
           close: [`SeriesTitle/${symbol}`]
         };

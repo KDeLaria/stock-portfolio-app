@@ -1,21 +1,36 @@
 import React from 'react';
 import {useAuth} from "../../utils/Auth";
 
-const Portfolio = () => {
+const Portfolio = (props) => {
   const {loggedIn} = useAuth();
+  let stocks;
+
+  if (props.portfolioArr) {
+  stocks = props.portfolioArr.map((item) => (
+    <li key={item}>
+      {item}
+    </li>
+  ));
+  }
+
   return (
-    <div className="">
+    <div>
       {loggedIn ? (
         <>
           <p className="font-semibold mb-4">Your portfolio trendline</p>
-          {/* Replace with graph component */}
-          <div className="h-40 bg-gray-200 rounded-lg mb-4"></div>
-          <button className="py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-700 transition-colors duration-300">
-            View Breakdown
-          </button>
+          <div className="h-40 bg-gray-200 rounded-lg mb-4">
+            <ul className="py-2">
+              {stocks}
+            </ul>
+          </div>
+          <a href="/portfolio">
+            <button className="py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-700 transition-colors duration-300">
+              View Breakdown
+            </button>
+          </a>
         </>
       ) : (
-        <p>Sign in to see portfolio</p>
+        <p className="py-2">Sign in to see portfolio</p>
       )}
     </div>
   );
