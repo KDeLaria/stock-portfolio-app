@@ -51,9 +51,11 @@ const SearchStocks = () => {
                         <Purchase stocks={stocks} user_id={user_id} getPortfolio={getPortfolio} />
                      </div>
                      <div>
-                        <ListPortfolio portfolio={portfolio} />
+                        <ListPortfolio user_id={user_id}  portfolio={portfolio} getPortfolio={getPortfolio} />
                      </div>
+                     <br></br>
                   </div>
+                  <br></br>
                </div>
             </div>
 
